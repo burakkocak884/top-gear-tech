@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location: MyString
+  running_capacity: 1
+  tire_service: false
+  service_any_vehicle: false
+  user_id: 1
+
+two:
+  name: MyString
+  location: MyString
+  running_capacity: 1
+  tire_service: false
+  service_any_vehicle: false
+  user_id: 1
