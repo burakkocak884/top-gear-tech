@@ -18,8 +18,8 @@ albert = User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password:
 marlin = User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "passowrd", first_name: "Marlin", last_name: "Orange")
 
 #garage table. [name, location, running_capacity, customers,employees, special_equipment, tire_installation, service_any_vehicle, user_id]
-Garage.create(name: "Master Tech", location: "Alpharetta, GA",  tire_installation: false, service_any_vehicle: true, user_id: 1)
-Garage.create(name: "Speed Tire", location: "Duluth, GA", tire_installation: true, service_any_vehicle: true, user_id: 2)
+Garage.create(name: "Master Tech", location: "Alpharetta, GA",  tire_service: false, service_any_vehicle: true, user_id: 1)
+Garage.create(name: "Speed Tire", location: "Duluth, GA", tire_service: true, service_any_vehicle: true, user_id: 2)
 
 
 
@@ -135,7 +135,7 @@ Service.create(type: "Filter, Air Condition", description: "Drain, flush, refill
 Employee.create(first_name: "Fernando", last_name: "Martinez", age: "27", gender: "male", experience: 4, skills: "A/C, drive-train, shocks", garage_id: 1)
 Employee.create(first_name: "Alex", last_name: "Cruz", age: "35", gender: "male", experience: 6, skills: "transmission, drive-train, shocks", garage_id: 1)
 Employee.create(first_name: "Benjamin", last_name: "Vitincheck", age: "28", gender: "male", experience: 4, skills: "A/C, drive-train, shocks", garage_id: 1)
-Employee.create(first_name: "Matt", last_name: "Long", age: "27", gender: "male", experience: 2 skills: "Breakes, drive-train, shocks", garage_id: 2)
+Employee.create(first_name: "Matt", last_name: "Long", age: "27", gender: "male", experience: 2, skills: "Breakes, drive-train, shocks", garage_id: 2)
 Employee.create(first_name: "Sam", last_name: "South", age: "47", gender: "male", experience: 9, skills: "Electrical, wiring, ECU", garage_id: 2)
 Employee.create(first_name: "Kim", last_name: "Chip", age: "32", gender: "female", experience: 5, skills: "Fluids , visual inspection, emissions", garage_id: 2)
 Employee.create(first_name: "Steve", last_name: "Henz", age: "29", gender: "male", experience: 7, skills: "Tune-up, Gaskets inspections, Leak detection", garage_id: 1)
