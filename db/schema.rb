@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_194432) do
     t.string "name"
     t.string "description"
     t.integer "total_cost"
+    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 2019_05_14_194432) do
     t.integer "mileage"
     t.string "license_plate"
     t.string "color"
-    t.string "type"
     t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

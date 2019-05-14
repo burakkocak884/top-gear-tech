@@ -7,9 +7,7 @@ class CreateVehicles < ActiveRecord::Migration[5.2]
       t.integer :mileage
       t.string :license_plate
       t.string :color
-      t.string :type
       t.integer :customer_id
-
       t.timestamps
     end
   end
