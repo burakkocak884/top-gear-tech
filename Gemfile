@@ -32,9 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'dotenv-rails'
+gem 'omniauth-github'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "devise", git: 'https://github.com/plataformatec/devise.git'
