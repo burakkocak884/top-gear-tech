@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_many :garages
-	has_many :customers, through: :garage
-	has_secure_password
+
+	devise :database_authenticatable,:registerable, :recoverable, :rememberable, :validatable
+
 end
