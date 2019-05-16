@@ -12,7 +12,7 @@ def account_update_params
 
 end
 
-def destroy
+   def destroy
 
 	end
 end
