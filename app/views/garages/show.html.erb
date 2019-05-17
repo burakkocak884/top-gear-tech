@@ -6,5 +6,9 @@ Location: <h2><%= @garage.location %></h2></h3>
 
 
 
-<%= link_to "Customers of #{@garage.name}", customers_path(@garage.id) %>
+<%= link_to "Appointments of  #{@garage.name}", appointments_path(@garage) %></br>
+<%= link_to "Update  #{@garage.name.upcase}'s info", edit_garage_path(@garage.id) %></br>
+
+<%= link_to "Delete #{@garage.name}", garage_path(@garage),  :method => :delete %>
+
 

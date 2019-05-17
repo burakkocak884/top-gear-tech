@@ -1,0 +1,13 @@
+
+<h1>Appointment Updated!!!</h1>
+
+
+Appointment for <%= link_to "#{@appointment.customer.first_name} #{@appointment.customer.last_name}", customer_path(@appointment.customer.id) %> at <%= @appointment.garage.name %> 
+<h3>Date: <%= @appointment.date %></h3>
+<h3>Type of Service to be Perform: <h2><%= @appointment.description %></h2></h3>
+
+
+<%= link_to "Update  this Appointment's info", edit_appointment_path(@appointment.id) %></br>
+
+<h4><%= link_to "Back to Appointments", appointments_path(@appointment.garage.id) %></h4>
+

@@ -1,16 +1,24 @@
-<%= form_for(garage) do |f| %>
+
+
+
+<%= form_for(@garage) do |f| %>
 <%= f.label :name %>
-<%= f.text_field :name %>
+<%= f.text_field :name %></br>
+
+ 
 
 <%= f.label :location %>
-<%= f.text_field :location %>
+<%= f.text_field :location %></br>
 
 
 <%= f.label :tire_service %>
-<%= f.check_box  :tire_service %>
+<%= f.check_box  :tire_service %></br>
 
 <%= f.label :service_any_vehicle %>
-<%= f.check_box  :service_any_vehicle %>
+<%= f.check_box  :service_any_vehicle %></br>
 
-<%= f.submit button_label %>
+<%= f.label :user_id %>
+<%= f.hidden_field :user_id %>
+
+<%= f.submit  %>
 <%end%>

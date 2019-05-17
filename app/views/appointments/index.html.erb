@@ -1,0 +1,12 @@
+<h1><%= @garage.name %> located in <%= @garage.location %></h1>
+<ul>
+	<h2>List of appointments:</h2>
+<% @appointments.each do |a| %>
+<li><%= link_to a.date, appointment_path(a) %></li>
+<%end %>
+</ul>
+
+<%= link_to "Add a New Appointment", new_appointment_path(@garage) %>
+
+
+<h4><%= link_to "Back to the Garage", garage_path(@garage.id) %></h4>

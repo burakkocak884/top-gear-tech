@@ -1,0 +1,30 @@
+
+<%= form_for(@vehicle) do |f| %>
+<%= f.label :year %>
+<%= f.number_field :year %></br>
+
+ 
+
+<%= f.label :make %>
+<%= f.text_field :make %></br>
+
+<%= f.label :model %>
+<%= f.text_field :model %></br>
+
+
+<%= f.label :mileage %>
+<%= f.number_field :mileage %></br>
+
+
+<%= f.label :license_plate %>
+<%= f.text_field :license_plate %></br> 
+
+<%= f.label :color %>
+<%= f.text_field :color %></br>
+ 
+
+ <%= f.label :customer_id %>
+<%= f.collection_select :customer_id,  Customer.all, :id,  :last_name %></br>
+
+<%= f.submit  %>
+<%end%>

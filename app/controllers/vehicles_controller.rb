@@ -1,11 +1,24 @@
 class VehiclesController < ApplicationController
   
   def index
-    @vehicles = Vehicle.all
+     if user_signed_in?
+     
+
+    @vehicles = Vehicle.where(customer_id: params[:format].to_i)
+    @customer  = Customer.find_by_id(params[:format].to_i)
+  else
+    redirect_to user_session_path
   end
+end
 
   def show
-    @vehicle = Vehicle.find(params[:id])
+   if user_signed_in?
+      
+      @vehicle = Vehicle.find(params[:id])
+    else
+      redirect_to user_session_path
+
+  end
   end
 
   def new
@@ -13,7 +26,18 @@ class VehiclesController < ApplicationController
   end
 
   def create
+     if user_signed_in?
+      user = current_user
     @vehicle = Vehicle.create(vehicle_params)
+    
+   owner = @vehicle.customer
+   
+  
+   redirect_to vehicles_path(owner)
+   
+ else 
+  redirect_to user_session_path
+end
   end
 
   def edit

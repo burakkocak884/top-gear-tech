@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'appointments/index'
+  get 'appointments/show'
+  get 'appointments/new'
+  get 'appointments/create'
+  get 'appointments/edit'
+  get 'appointments/update'
   devise_for :users, :controllers => { :registrations => "registrations", omniauth_callbacks: "callbacks"}
  
 
@@ -13,6 +19,8 @@ Rails.application.routes.draw do
   resources :vehicles
   resources :employess
   resources :services
+  resources :appointments
+ 
 
 
 

@@ -10,17 +10,18 @@
 
 
 # user table  [username,email,password, first_name, last_name, garages]
- User.create(username: 'bentucker', email: 'bentucker@garage.com', password: "passowrd")
- User.create(username: 'adamsmith', email: 'adamsmith@gmail.com', password: "passowrd")
- User.create(username: 'johnlong', email: 'johnlong@garage.com', password: "passowrd")
- User.create(username: 'kimstevenson', email: 'ks925@yahoo.com', password: "passowrd")
- User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password: "passowrd")
- User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "passowrd")
+ User.create(username: 'bentucker', email: 'bentucker@garage.com', password: "password")
+ User.create(username: 'adamsmith', email: 'adamsmith@gmail.com', password: "password")
+ User.create(username: 'johnlong', email: 'johnlong@garage.com', password: "password")
+ User.create(username: 'kimstevenson', email: 'ks925@yahoo.com', password: "password")
+ User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password: "password")
+ User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "password")
 
+#User.destroy_all
 #garage table. [name, location, running_capacity, customers,employees, special_equipment, tire_installation, service_any_vehicle, user_id]
 Garage.create(name: "Master Tech", location: "Alpharetta, GA",  tire_service: false, service_any_vehicle: true, user_id: 1)
 Garage.create(name: "Speed Tire", location: "Duluth, GA", tire_service: true, service_any_vehicle: true, user_id: 2)
-
+#Garage.destroy_all
 
 
 
@@ -37,7 +38,7 @@ Customer.create(first_name: "Joel", last_name: "Timber",email: "timberj@aol.com"
 Customer.create(first_name: "Beth", last_name: "Bethany",email: "bbfashion@att.com", standing_balance: 0, garage_id: 1)
 Customer.create(first_name: "Olli",  last_name: "Martinez",email: "omtinez@tmobile.com", standing_balance: 0, garage_id: 1)
 Customer.create(first_name: "Mike", last_name: "Miller",email: "mm2019@yahoo.com",standing_balance: 0, garage_id: 1)
-
+#Customer.destroy_all
 
 
 #appointments table [description, date,garage_id, customer_id]
@@ -52,7 +53,7 @@ Appointment.create(description: "Fuel system check", date: "06/10/2019", garage_
 Appointment.create(description: "Emissions test", date: "06/22/2019", garage_id: 2, customer_id: 9)
 Appointment.create(description: "60k miles tune-up", date: "06/13/2019", garage_id: 1, customer_id: 3)
 Appointment.create(description: "Shocks", date: "06/07/2019", garage_id: 1, customer_id: 1)
-
+#Appointment.destroy_all
 #vehicles table[make, model,trim: year, mileage, license_plate, color, type,  customer_id]
 Vehicle.create(make: "Toyota", model: "Sienna", year: 2010, mileage: 59776, license_plate: "MTB425", color: "Silver" ,  customer_id: 1)
 Vehicle.create(make: "Honda", model: "Civic", year: 2011, mileage: 220573, license_plate: "PJL2018", color: "White"  , customer_id: 3)
@@ -78,7 +79,7 @@ Vehicle.create(make: "Mercury", model: "Mountainer" ,year: 2004, mileage: 159845
 Vehicle.create(make: "Honda", model: "Fit" ,year: 2011, mileage: 1225674, license_plate: "MUT8655", color: "Silver" ,  customer_id: 3)
 Vehicle.create(make: "Mazda", model: "3" ,year: 2012, mileage: 19984, license_plate: "JHG8766", color: "Silver" ,  customer_id: 1)
 Vehicle.create(make: "Subaru", model: "Forester" ,year: 2015, mileage: 156544, license_plate: "KUT5673", color: "Silver" ,  customer_id: 16)
-
+#Vehicle.destroy_all
 
 
 
@@ -129,7 +130,7 @@ Service.create(name: "Air Condition", description: "recharge", total_cost: 150, 
 Service.create(name: "Shocks", description: "new front shocks", total_cost: 550, vehicle_id: 9)
 Service.create(name: "Air Condition,Shocks", description: "recharge, new front shocks", total_cost: 650, vehicle_id: 14)
 Service.create(name: "Filter, Air Condition", description: "Drain, flush, refill, new cabin filter", total_cost: 150, vehicle_id: 17)
-
+#Service.destroy_all
 
 #employees table[first_name, last_name, age, gender, experience, skills, garage_id]
 Employee.create(first_name: "Fernando", last_name: "Martinez", age: "27", gender: "male", experience: 4, skills: "A/C, drive-train, shocks", garage_id: 1)
@@ -140,7 +141,7 @@ Employee.create(first_name: "Sam", last_name: "South", age: "47", gender: "male"
 Employee.create(first_name: "Kim", last_name: "Chip", age: "32", gender: "female", experience: 5, skills: "Fluids , visual inspection, emissions", garage_id: 2)
 Employee.create(first_name: "Steve", last_name: "Henz", age: "29", gender: "male", experience: 7, skills: "Tune-up, Gaskets inspections, Leak detection", garage_id: 1)
 Employee.create(first_name: "Viladimir", last_name: "Russ", age: "33", gender: "male", experience: 3, skills: "internal components, A/C , Heat, Sound system and accessories", garage_id: 1)
-
+#Employee.destroy_all
 
 
 

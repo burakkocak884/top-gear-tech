@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
  def index
-   if signed_in?
+   if user_signed_in?
    
 
     @customers = Customer.where(garage_id: params[:format].to_i)
@@ -11,9 +11,14 @@ class CustomersController < ApplicationController
   end
 
   def show
+     if user_signed_in?
+      
+      @customer = Customer.find(params[:id])
+    else
+      redirect_to user_session_path
 
-    @customer = Customer.find(params[:id])
   end
+end
 
   def new
   @customer = Customer.new
@@ -28,8 +33,30 @@ class CustomersController < ApplicationController
   end
 
   def update
+    if user_signed_in?
    @customer = Customer.find(params[:id])
+   @customer.update(customer_params)
+ else
+  redirect_to user_session_path
+
   end
+
+  end
+
+  def destroy
+
+    if user_signed_in?
+    customer = Customer.find(params[:id])
+  
+
+    
+    customer.destroy
+    redirect_to garages_path(current_user)
+    else
+      redirect_to user_session_path
+
+  end
+end
   private
   def customer_params
     params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance)

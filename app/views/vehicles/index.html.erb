@@ -1,2 +1,10 @@
-<h1>Vehicles#index</h1>
-<p>Find me in app/views/vehicles/index.html.erb</p>
+<h1><%= @customer.first_name %>'s vehicles:</h1>
+<ul>
+<% @vehicles.each  do |v| %>
+<li><%= link_to "#{v.year} #{v.make} #{v.model} ", vehicle_path(v)%> </li>
+<% end %>
+</ul>
+
+
+
+<%= link_to "Add a Vehicle", new_vehicle_path(@customer.id) %>
