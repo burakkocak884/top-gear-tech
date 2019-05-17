@@ -10,12 +10,12 @@
 
 
 # user table  [username,email,password, first_name, last_name, garages]
-ben = User.create(username: 'bentucker', email: 'bentucker@garage.com', password: "passowrd")
-adam = User.create(username: 'adamsmith', email: 'adamsmith@gmail.com', password: "passowrd")
-john = User.create(username: 'johnlong', email: 'johnlong@garage.com', password: "passowrd")
-kim = User.create(username: 'kimstevenson', email: 'ks925@yahoo.com', password: "passowrd")
-albert = User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password: "passowrd")
-marlin = User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "passowrd")
+ User.create(username: 'bentucker', email: 'bentucker@garage.com', password: "passowrd")
+ User.create(username: 'adamsmith', email: 'adamsmith@gmail.com', password: "passowrd")
+ User.create(username: 'johnlong', email: 'johnlong@garage.com', password: "passowrd")
+ User.create(username: 'kimstevenson', email: 'ks925@yahoo.com', password: "passowrd")
+ User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password: "passowrd")
+ User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "passowrd")
 
 #garage table. [name, location, running_capacity, customers,employees, special_equipment, tire_installation, service_any_vehicle, user_id]
 Garage.create(name: "Master Tech", location: "Alpharetta, GA",  tire_service: false, service_any_vehicle: true, user_id: 1)

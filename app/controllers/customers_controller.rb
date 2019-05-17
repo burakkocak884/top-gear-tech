@@ -1,9 +1,17 @@
 class CustomersController < ApplicationController
  def index
-    @customers = Customer.all
+   if signed_in?
+   
+
+    @customers = Customer.where(garage_id: params[:format].to_i)
+    @garage = Garage.find_by_id(params[:format].to_i)
+  else
+     redirect_to user_session_path
+   end
   end
 
   def show
+
     @customer = Customer.find(params[:id])
   end
 

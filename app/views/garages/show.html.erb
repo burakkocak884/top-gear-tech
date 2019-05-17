@@ -1,2 +1,10 @@
-<h1>Garage#show</h1>
-<p>Find me in app/views/garage/show.html.erb</p>
+Return to <h1><%= link_to @user.email.split("@")[0], root_path %>'s home page</h1>
+<h3>Garage Name: <h2><%= @garage.name %></h2>
+Location: <h2><%= @garage.location %></h2></h3>
+<h3>Offers Tire Service? <h2><%= @garage.tire_service %></h2></h3>
+<h3>Can service any type of vehicles?<h2><%= @garage.service_any_vehicle %></h2></h3>
+
+
+
+<%= link_to "Customers of #{@garage.name}", customers_path(@garage.id) %>
+

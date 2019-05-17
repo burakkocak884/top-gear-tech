@@ -13,11 +13,12 @@ class GaragesController < ApplicationController
 
 
   def show
-    if signed_in?
+    if user_signed_in?
     @garage = Garage.find(params[:id])
-    redirect_to garage_path(@garage)
+    @user = @garage.user
+    
   else
-    redirect_to new_user_session_path
+    redirect_to user_session_path
   end
   end
 
