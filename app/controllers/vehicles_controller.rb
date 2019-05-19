@@ -22,14 +22,17 @@ end
   end
 
   def new
+   
+    @garage_id = params[:format]
     @vehicle = Vehicle.new
   end
 
   def create
      if user_signed_in?
+
       user = current_user
     @vehicle = Vehicle.create(vehicle_params)
-    
+
    owner = @vehicle.customer
    
   

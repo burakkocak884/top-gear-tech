@@ -3,8 +3,8 @@ Appointment for <%= link_to "#{@appointment.customer.first_name} #{@appointment.
 <h3>Type of Service to be Perform: <h2><%= @appointment.description %></h2></h3>
 
 
-<%= link_to "Update  this Appointment's info", edit_appointment_path(@appointment.id) %></br>
+<%= link_to "Edit this Appointment's info", appointments_edit_path(@appointment.id) %></br>
 <%= link_to "Delete #{@appointment.date}", appointment_path(@appointment),  :method => :delete %>
 
-<h4><%= link_to "Back to Appointments", appointments_path(@appointment.garage.id) %></h4>
+<h4><%= link_to "Back to Appointments", garage_appointments_path(@appointment.garage.id) %></h4>
 

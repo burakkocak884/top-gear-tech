@@ -257,7 +257,7 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-   config.omniauth :github, '', '', scope:  'user,public_repo'
+   config.omniauth :github, '5ffac342c0e5707d8d9d', '8895c63880d10e3d5670b40cc08a1d70e236af7d', scope:  'user,public_repo'
 
   
   # Add a new OmniAuth provider. Check the wiki for more information on setting

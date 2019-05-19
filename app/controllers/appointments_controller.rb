@@ -1,80 +1,82 @@
 class AppointmentsController < ApplicationController
-  def index
-    if user_signed_in?
-
-   
-
-    @appointments = Appointment.where(garage_id: params[:format].to_i)
-    @garage = Garage.find_by_id(params[:format].to_i)
-  else
-     redirect_to user_session_path
-   end
-  end
+      def index
+          if user_signed_in?
+          @appointments = Appointment.where(garage_id: params[:garage_id])
+          @garage = Garage.find_by_id(params[:garage_id])
+        
+        else
+           redirect_to user_session_path
+         end
+      end
   
 
-  def show
-    if user_signed_in?
+      def show
+        if user_signed_in?
+         @appointment = Appointment.find(params[:id])
+        else
+          redirect_to user_session_path
+       end
+      end
+
+      def new
       
-      @appointment = Appointment.find(params[:id])
+        #@garage_id = params[:garage_id]
+        @appointment = Appointment.new(garage_id: params[:format].to_i)
+        @appointment.build_customer
+      end
+
+      def create
+          if user_signed_in?
+
+          user = current_user
+          
+     
+         @appointment = Appointment.new(appointment_params)
+         @appointment.save
+         garage = @appointment.garage
+         # @garage = @appointment.garage_id
+        
+          redirect_to garage_appointments_path(garage)
+       
+        else 
+        redirect_to user_session_path
+        end
+      end
       
-    else
-      redirect_to user_session_path
 
-  end
+      def edit
+         if user_signed_in?
+        
+         @appointment = Appointment.find(params[:id])
 
-  end
+        
+        else
 
-  def new
-    
-    @appointment = Appointment.new
+       redirect_to user_session_path
+       end
+      end
 
-  end
+      def update
 
-  def create
-      if user_signed_in?
+          if user_signed_in?
 
-      user = current_user
-      
- 
-     @appointment = Appointment.create(appointment_params)
-   
-     garage = @appointment.garage
-      redirect_to appointments_path(garage)
-   
- else 
-  redirect_to user_session_path
-end
-  end
-  
+          @appointment = Appointment.find_by_id(params[:id])
 
-  def edit
-     if user_signed_in?
-    @appointment = Appointment.find(params[:id])
-  else
+          @appointment.update(appointment_params)
 
-  redirect_to user_session_path
-end
-  end
-
-  def update
-
-    if user_signed_in?
-    @appointment = Appointment.find(params[:id])
-    @appointment.update(appointment_params)
-
-    @user = current_user
-    
-  else
-    redirect_to user_session_path
-  end
-  end
+          @user = current_user
+          
+        else
+          redirect_to user_session_path
+        end
+      end
 
   def destroy
      if user_signed_in?
     appointment = Appointment.find(params[:id])
     g = appointment.garage
     appointment.destroy
-    redirect_to appointments_path(g)
+    redirect_to garage_appointments_path(g)
   else
    redirect_to user_session_path
   end
@@ -84,6 +86,6 @@ end
 
 
    def appointment_params
-    params.require(:appointment).permit(:description, :date, :garage_id, :customer_id)
+    params.require(:appointment).permit(:description, :date, :garage_id, :customer_id, :customer_attributes => [:first_name, :last_name ,:standing_balance, :email] )
   end
 end

@@ -14,13 +14,16 @@ Rails.application.routes.draw do
   root 'sessions#home'
 
   
-  resources :garages
+  resources :garages do 
+    resources :appointments, only: [:index, :show]
+
+  end
   resources :customers
   resources :vehicles
   resources :employess
   resources :services
   resources :appointments
- 
+
 
 
 

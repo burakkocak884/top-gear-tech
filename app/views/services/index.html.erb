@@ -1,8 +1,0 @@
-<h1>Service records for <%= @vehicle.make %> <%= @vehicle.model %></h1>
-<ul>
-<% @services.each do |s| %>
-<li><%= link_to s.name, service_path(s) %></li>
-<% end %>
-</ul>
-
-<%= link_to "Add a New Service Record", new_service_path(@vehicle) %>

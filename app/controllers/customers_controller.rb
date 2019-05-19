@@ -12,6 +12,7 @@ class CustomersController < ApplicationController
 
   def show
      if user_signed_in?
+
       
       @customer = Customer.find(params[:id])
     else
@@ -30,6 +31,7 @@ end
 
   def edit
     @customer = Customer.find(params[:id])
+    
   end
 
   def update

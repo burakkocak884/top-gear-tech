@@ -1,12 +1,19 @@
 <h1>Customer Information Page</h1>
-<h2>Name : <%= @customer.first_name %> <%= @customer.last_name %></h2></br> 
-<h3>Email : <%= @customer.email %></h3></br>
-<h2>Balance to be collected : $<%= @customer.standing_balance %></h2></br>
-<h3>Number of vehicles(if any): <% @customer.vehicles.size %></h3></br>
-<h2><%= link_to "Add a vehicle", new_vehicle_path(@customer) %></h2>
-<h3>Details of <%= link_to "Vehicles", vehicles_path(@customer.id) %></h3> 
+<h2>Name : <%= @customer.first_name %> <%= @customer.last_name %></h2> 
+<h3>Email : <%= @customer.email %></h3>
 
-<%= link_to "Update  #{@customer.first_name}'s info", edit_customer_path(@customer.id) %></br>
+<% if @customer.standing_balance == 0 %>
+
+<h2 >Balance to be collected : <h1 style = 'color: green'>$<%= @customer.standing_balance %></h1></h2>
+<% else %> 
+<h2 >Balance to be collected :</h2><h1 style = 'color: red'>$<%= @customer.standing_balance %></h1>
+<% end %>
+<h3>Number of vehicles(if any): <%= @customer.vehicles.size %></h3>
+
+<h3>Details of <%= link_to "Vehicles", vehicles_path(@customer) %></h3> 
+<h2><%= link_to "Add a vehicle", new_vehicle_path(@customer) %></h2>
+
+<%= link_to "Update  #{@customer.first_name}'s info", edit_customer_path(@customer.id) %>
 
 
 

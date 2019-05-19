@@ -2,11 +2,15 @@
 <ul>
 	<h2>List of appointments:</h2>
 <% @appointments.each do |a| %>
-<li><%= link_to a.date, appointment_path(a) %></li>
+
+
+<li><%= link_to a.date, garage_appointment_path(a.garage_id, a.id) %></li>
 <%end %>
 </ul>
 
-<%= link_to "Add a New Appointment", new_appointment_path(@garage) %>
+
+
+<%= link_to "Add a New Appointment", appointments_new_path(@garage) %>
 
 
 <h4><%= link_to "Back to the Garage", garage_path(@garage.id) %></h4>

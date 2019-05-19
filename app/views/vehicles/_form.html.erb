@@ -23,8 +23,9 @@
 <%= f.text_field :color %></br>
  
 
- <%= f.label :customer_id %>
-<%= f.collection_select :customer_id,  Customer.all, :id,  :last_name %></br>
+ <%= f.label :customer %>
+ <%= f.hidden_field :customer_id, value: @garage_id %>
+
 
 <%= f.submit  %>
 <%end%>
