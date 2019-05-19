@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
+   
   
-  get 'appointments/index'
-  get 'appointments/show'
   get 'appointments/new'
   get 'appointments/create'
   get 'appointments/edit'
@@ -20,9 +19,10 @@ Rails.application.routes.draw do
   end
   resources :customers
   resources :vehicles
-  resources :employess
-  resources :services
-  resources :appointments
+  
+  
+  
+
 
 
 
