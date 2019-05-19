@@ -29,11 +29,21 @@
 <%= c.text_field :email %>
 <%= c.label :standing_balance %>
 <%= c.number_field :standing_balance %>
+<% end %></br>
 
-
-
-
-
+<%= f.fields_for :vehicle do |v| %>
+<%= v.label :year %>
+<%= v.number_field :year %>
+<%= v.label :make %>
+<%= v.text_field :make%>
+<%= v.label :model %>
+<%= v.text_field :model %>
+<%= v.label :mileage %>
+<%= v.number_field :mileage %>
+<%= v.label :license_plate %>
+<%= v.text_field :license_plate %>
+<%= v.label :color %>
+<%= v.text_field :color %>
 <% end %>
 
 

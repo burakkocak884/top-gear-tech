@@ -23,6 +23,7 @@ class AppointmentsController < ApplicationController
         #@garage_id = params[:garage_id]
         @appointment = Appointment.new(garage_id: params[:format].to_i)
         @appointment.build_customer
+        @appointment.build_vehicle
       end
 
       def create
@@ -32,6 +33,7 @@ class AppointmentsController < ApplicationController
           
      
          @appointment = Appointment.new(appointment_params)
+        
          @appointment.save
          garage = @appointment.garage
          # @garage = @appointment.garage_id
@@ -86,6 +88,8 @@ class AppointmentsController < ApplicationController
 
 
    def appointment_params
-    params.require(:appointment).permit(:description, :date, :garage_id, :customer_id, :customer_attributes => [:first_name, :last_name ,:standing_balance, :email] )
+    params.require(:appointment).permit(:description, :date, :garage_id, :customer_id,
+     :customer_attributes => [:first_name, :last_name ,:standing_balance, :email],
+     :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color] )
   end
 end

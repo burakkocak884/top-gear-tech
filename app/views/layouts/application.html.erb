@@ -7,19 +7,62 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        margin: 0;
+      }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ffffff90;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: brown;
+  text-align: center;
+  padding: 0px 20px;
+  text-decoration: none;
+  
+}
+
+ li a:hover {
+  background-color: #4CAF50;
+}
+.loggedout {
+
+    position: relative;
+
+left: 45%;
+top:  40%;
+ 
+}
+
+
+
+</style>
   </head>
   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
-  <body>  
+  <body style= "background-size:cover; background-image:url(https://previews.123rf.com/images/donatas1205/donatas12051202/donatas1205120200008/12455190-carpentry-construction-tools-home-improvement-background-.jpg)">  
     <p class="navbar-text pull-right">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+  <ul>
+  <li><a><%= link_to "Home", root_path %></a></li>
+  <li><a><%= link_to 'Garages', garages_path(@user) %></a></li>
+  <li><a><%= link_to 'Edit-Profile', edit_user_registration_path, :class => 'navbar-link' %></a></li> 
+  <li><a><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></a></li>
+  
+  </ul>
+
+  
+  
 <% end %>
 
 </p>

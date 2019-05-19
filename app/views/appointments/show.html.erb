@@ -1,6 +1,8 @@
 Appointment for <%= link_to "#{@appointment.customer.first_name} #{@appointment.customer.last_name}", customer_path(@appointment.customer.id) %> at <%= @appointment.garage.name %> 
-<h3>Date: <%= @appointment.date %></h3>
-<h3>Type of Service to be Perform: <h2><%= @appointment.description %></h2></h3>
+<h3>Date: <h2 style = "color: blue"><%= @appointment.date %><h2></h3>
+<h3>Type of Service: <h3 style = "color :blue"><%= @appointment.description %></h3></h3>
+
+<h3>For : <%= @appointment.vehicle.year %>-<%= @appointment.vehicle.make %>-<%= @appointment.vehicle.model %></h3> 
 
 
 <%= link_to "Edit this Appointment's info", appointments_edit_path(@appointment.id) %></br>
