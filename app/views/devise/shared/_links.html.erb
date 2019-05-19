@@ -50,4 +50,13 @@ top: 5px;
   <%- resource_class.omniauth_providers.each do |provider| %>
     <p class ="tosigningit"><%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></p><br />
   <% end %>
+
 <% end %>
+<p class = "tosigningit"><% if session[:user_id] %>
+  <h1><%= @user.name %></h1>
+  <h2>Email: <%= @user.email %></h2>
+  <h2>Facebook UID: <%= @user.uid %></h2>
+  <img src="<%= @user.image %>">
+<% else %>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+<% end %></p>

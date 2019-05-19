@@ -36,8 +36,12 @@ class GaragesController < ApplicationController
       
    @garage = Garage.new(garage_params)
    @garage.user_id = user.id
-   @garage.save
+   
+   if @garage.save
    redirect_to garages_path(user)
+ else
+  flash[:alert] = "Invalid information"
+end
    
  else 
   redirect_to user_session_path

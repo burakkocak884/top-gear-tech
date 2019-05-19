@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resources :customers
   resources :vehicles
-  
+  get '/auth/facebook/callback' => 'sessions#create'
   
   
 
