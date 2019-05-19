@@ -1,14 +1,28 @@
-Return to <h1><%= link_to @user.email.split("@")[0], root_path %>'s home page</h1>
-<h3>Garage Name: <h2><%= @garage.name %></h2>
-Location: <h2><%= @garage.location %></h2></h3>
-<h3>Offers Tire Service? <h2><%= @garage.tire_service %></h2></h3>
-<h3>Can service any type of vehicles?<h2><%= @garage.service_any_vehicle %></h2></h3>
 
+<div class = "garage_detail">
+<h3 class = "titles">Garage Name: </h3><h2 style = 'color: green'><%= @garage.name %></h2>
+<h3 class = "titles">Location: </h3><h2 style = 'color: green'><%= @garage.location %></h2>
 
+<% if @garage.tire_service == true %>
 
+ <h2 style = 'color: orange'><%= @garage.name %> now offers tire service!!!</h2>
+<% else %>
+ <h2 style = 'color: red'><%= @garage.name %> does NOT offer tire service at this location!!!</h2>
+
+<% end %>
+<% if @garage.service_any_vehicle == true %>
+<h2 style = 'color: orange'><%= @garage.name %> can service any makes and models!!!</h2>
+<% else %>
+<h2 style = 'color: red'><%= @garage.name %> does NOT repair any makes and models!!!</h2>
+
+<% end %>
+</div>
+
+<div class="app_whole">
 <%= link_to "Appointments of  #{@garage.name}", garage_appointments_path(@garage) %></br>
 <%= link_to "Update  #{@garage.name.upcase}'s info", edit_garage_path(@garage.id) %></br>
 
 <%= link_to "Delete #{@garage.name}", garage_path(@garage),  :method => :delete %>
+</div>
 
 

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_203031) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "description"
-    t.string "date"
+    t.date "date"
     t.integer "garage_id"
     t.integer "customer_id"
     t.integer "vehicle_id"
@@ -27,18 +27,6 @@ ActiveRecord::Schema.define(version: 2019_05_15_203031) do
     t.string "last_name"
     t.string "email"
     t.integer "standing_balance"
-    t.integer "garage_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "gender"
-    t.integer "age"
-    t.integer "experience"
-    t.string "skills"
     t.integer "garage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

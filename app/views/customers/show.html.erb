@@ -1,19 +1,29 @@
-<h1>Customer Information Page</h1>
-<h2>Name : <%= @customer.first_name %> <%= @customer.last_name %></h2> 
-<h3>Email : <%= @customer.email %></h3>
+
+
+<div class = "app_whole">
+<h1 style = "color: purple">Customer Information Page</h1>
+<h3 class = "titles">Name : </h3><h2><%= @customer.first_name %> <%= @customer.last_name %>(<%= link_to "Update info", edit_customer_path(@customer.id) %>)(<%= link_to "Delete the customer", customer_path, :method => :delete %>)
+</h2> 
+<h3 class = "titles">Email : </h3><h2><%= @customer.email %></h2>
 
 <% if @customer.standing_balance == 0 %>
 
-<h2 >Balance to be collected : <h1 style = 'color: green'>$<%= @customer.standing_balance %></h1></h2>
+<h3 class = "titles">Balance to be collected : </h3><h1 style = 'color: green'>$<%= @customer.standing_balance %></h1>
 <% else %> 
-<h2 >Balance to be collected :</h2><h1 style = 'color: red'>$<%= @customer.standing_balance %></h1>
+<h3 class = "titles">Balance to be collected :</h3><h1 style = 'color: red'>$<%= @customer.standing_balance %></h1>
 <% end %>
-<h3>Number of vehicles(if any): <%= @customer.vehicles.size %></h3>
+<% if  @customer.vehicles.size == 0  %>
+<h2 style = "color: red"><%=  @customer.first_name %> currently doesnt have any vehicles in the system...</h2>
+<% else %>
+<h2><%= @customer.vehicles.size %> <%= link_to "Vehicles", vehicles_path(@customer) %> in the system...</h2>
 
-<h3>Details of <%= link_to "Vehicles", vehicles_path(@customer) %></h3> 
-<h2><%= link_to "Add a vehicle", new_vehicle_path(@customer) %></h2>
 
-<%= link_to "Update  #{@customer.first_name}'s info", edit_customer_path(@customer.id) %>
+<% end %>
 
+
+
+<h2><%= link_to "Add another vehicle", new_vehicle_path(@customer) %></h2>
+
+</div>
 
 

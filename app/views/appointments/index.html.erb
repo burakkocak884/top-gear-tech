@@ -1,16 +1,20 @@
-<h1><%= @garage.name %> located in <%= @garage.location %></h1>
+<h1 class = "app_whole"><%= @garage.name %> located in <%= @garage.location %></h1>
 <ul>
-	<h2>List of appointments:</h2>
+	<h2>List of Appointments:</h2>
 <% @appointments.each do |a| %>
 
-
-<li><%= link_to a.date, garage_appointment_path(a.garage_id, a.id) %></li>
+<% if a.customer %>
+<li><%= link_to  "#{a.date}(#{ a.customer.last_name})", garage_appointment_path(a.garage_id, a.id)%></li>
+<% else %>
+<p> Since the customer for the appointment on <%= a.date %> has been deleted, the appointment  does NOT exist anymore!!!</p>
+<% end %>
 <%end %>
+<li><%= link_to "Add a New Appointment", appointments_new_path(@garage) %></li>
+<li><%= link_to "Back to the Garage", garage_path(@garage.id) %></li>
+
 </ul>
 
 
 
-<%= link_to "Add a New Appointment", appointments_new_path(@garage) %>
 
 
-<h4><%= link_to "Back to the Garage", garage_path(@garage.id) %></h4>

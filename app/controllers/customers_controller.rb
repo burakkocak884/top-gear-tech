@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
   def show
      if user_signed_in?
 
-      
+   
       @customer = Customer.find(params[:id])
     else
       redirect_to user_session_path
@@ -23,6 +23,7 @@ end
 
   def new
   @customer = Customer.new
+  @customer.build_vehicle
   end
 
   def create
@@ -61,6 +62,6 @@ end
 end
   private
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance)
+    params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance, :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color])
   end
 end

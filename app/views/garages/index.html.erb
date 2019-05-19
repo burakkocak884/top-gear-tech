@@ -1,11 +1,12 @@
 
 
-<h1><%= @user.email.split("@")[0] %>'s garages</h1>
+<h1><%= @user.email.split("@")[0].upcase %>'s garages</h1>
 <ul>
 <% @garages.each do |g| %>
 	<li><%= link_to g.name, garage_path(g) %></li>
 	<%end %>
+
+
+
+<li ><%= link_to "Add a New Garage", new_garage_path(@user) %></li>
 </ul>
-
-
-<%= link_to "Add a New Garage", new_garage_path(@user) %>
