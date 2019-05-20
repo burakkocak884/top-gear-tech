@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-   
-  
+   resources :appointments
+  get 'appointments/index'
+  get 'appointments/show'
   get 'appointments/new'
   get 'appointments/create'
   get 'appointments/edit'
@@ -12,14 +13,14 @@ Rails.application.routes.draw do
 
   root 'sessions#home'
 
-  
+  resources :appointments
   resources :garages do 
     resources :appointments, only: [:index, :show]
 
   end
   resources :customers
   resources :vehicles
-  get '/auth/facebook/callback' => 'sessions#create'
+  
   
   
 

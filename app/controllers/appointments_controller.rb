@@ -33,8 +33,14 @@ class AppointmentsController < ApplicationController
           
      
          @appointment = Appointment.new(appointment_params)
-        
+
          @appointment.save
+         @appointment.vehicle.customer_id = @appointment.customer_id
+         @appointment.vehicle.save
+
+         
+      
+         
          garage = @appointment.garage
          # @garage = @appointment.garage_id
         
@@ -77,6 +83,7 @@ class AppointmentsController < ApplicationController
      if user_signed_in?
     appointment = Appointment.find(params[:id])
     g = appointment.garage
+    d = appointment.date
     appointment.destroy
     redirect_to garage_appointments_path(g)
   else

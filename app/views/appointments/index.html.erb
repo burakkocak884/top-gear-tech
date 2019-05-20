@@ -6,7 +6,7 @@
 <% if a.customer %>
 <li><%= link_to  "#{a.date}(#{ a.customer.last_name})", garage_appointment_path(a.garage_id, a.id)%></li>
 <% else %>
-<p> Since the customer for the appointment on <%= a.date %> has been deleted, the appointment  does NOT exist anymore!!!</p>
+<%= @message %>
 <% end %>
 <%end %>
 <li><%= link_to "Add a New Appointment", appointments_new_path(@garage) %></li>

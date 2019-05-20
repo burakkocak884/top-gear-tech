@@ -15,7 +15,7 @@
 <% if  @customer.vehicles.size == 0  %>
 <h2 style = "color: red"><%=  @customer.first_name %> currently doesnt have any vehicles in the system...</h2>
 <% else %>
-<h2><%= @customer.vehicles.size %> <%= link_to "Vehicles", vehicles_path(@customer) %> in the system...</h2>
+<h2>This customer has "<%= @customer.vehicles.size %>" <%= link_to "Vehicle(s)", vehicles_path(@customer) %> in the system...</h2>
 
 
 <% end %>
@@ -23,7 +23,7 @@
 
 
 <h2><%= link_to "Add another vehicle", new_vehicle_path(@customer) %></h2>
-
+<h2><%= link_to "Delete the customer", customer_path(@customer), :method => :delete %></h2>
 </div>
 
 

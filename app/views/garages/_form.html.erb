@@ -1,6 +1,5 @@
 
-
-
+<div class = "app_whole">
 <%= form_for(@garage) do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %></br>
@@ -17,8 +16,9 @@
 <%= f.label :service_any_vehicle %>
 <%= f.check_box  :service_any_vehicle %></br>
 
-<%= f.label :user_id %>
+
 <%= f.hidden_field :user_id %>
 
 <%= f.submit  %>
 <%end%>
+</div>
