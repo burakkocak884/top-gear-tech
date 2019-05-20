@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :garages
   has_many :customers, through: :garages
+  has_many :appointments, through: :garages
+  has_many :vehicles, through: :appointment
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   
@@ -16,7 +18,7 @@ class User < ApplicationRecord
     	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     		
         user.provider = auth.provider
-    		user.username = auth.info.username
+    		#user.username = auth.info.username
     		user.uid = auth.uid
         user.email = auth.info.email
 

@@ -4,7 +4,9 @@ class GaragesController < ApplicationController
      def index
 
          if user_signed_in?
-          @garages = Garage.all
+       
+          @garages = Garage.where(user_id: params[:format])
+
           @user = current_user
        else
           redirect_to user_session_path
@@ -14,6 +16,7 @@ class GaragesController < ApplicationController
 
   def show
     if user_signed_in?
+     
     @garage = Garage.find(params[:id])
     @appointment = @garage.appointments.build
 
@@ -25,8 +28,10 @@ class GaragesController < ApplicationController
   end
 
   def new
-   
-   @garage = Garage.new
+  
+
+   @garage = Garage.new(user_id: params[:format])
+
   end
 
   def create
