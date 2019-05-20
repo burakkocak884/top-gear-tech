@@ -14,10 +14,9 @@ ActiveRecord::Schema.define(version: 2019_05_15_203031) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "description"
-    t.date "date"
+    t.string "date"
     t.integer "garage_id"
     t.integer "customer_id"
-    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,12 +31,33 @@ ActiveRecord::Schema.define(version: 2019_05_15_203031) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gender"
+    t.integer "age"
+    t.integer "experience"
+    t.string "skills"
+    t.integer "garage_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "garages", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.boolean "tire_service"
     t.boolean "service_any_vehicle"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "total_cost"
+    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
