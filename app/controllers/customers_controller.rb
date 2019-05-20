@@ -50,12 +50,11 @@ end
 
     if user_signed_in?
     customer = Customer.find(params[:id])
-    byebug
   
 
     
     customer.destroy
-    redirect_to appointments_path(current_user)
+    redirect_to garages_path(current_user)
     else
       redirect_to user_session_path
 

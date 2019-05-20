@@ -12,6 +12,7 @@ class AppointmentsController < ApplicationController
 
       def show
         if user_signed_in?
+
          @appointment = Appointment.find(params[:id])
         else
           redirect_to user_session_path
@@ -20,8 +21,9 @@ class AppointmentsController < ApplicationController
 
       def new
       
-        #@garage_id = params[:garage_id]
+        @garage_id = params[:garage_id]
         @appointment = Appointment.new(garage_id: params[:format].to_i)
+
         @appointment.build_customer
         @appointment.build_vehicle
       end
@@ -54,8 +56,9 @@ class AppointmentsController < ApplicationController
 
       def edit
          if user_signed_in?
+         
         
-         @appointment = Appointment.find(params[:id])
+         @appointment = Appointment.find_by(id: params[:id])
 
         
         else
@@ -67,10 +70,14 @@ class AppointmentsController < ApplicationController
       def update
 
           if user_signed_in?
+         
 
           @appointment = Appointment.find_by_id(params[:id])
 
           @appointment.update(appointment_params)
+           @appointment.vehicle.customer_id = @appointment.customer_id
+         @appointment.vehicle.save
+      
 
           @user = current_user
           
@@ -84,6 +91,8 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     g = appointment.garage
     d = appointment.date
+    @message = "Since the customer for the appointment on #{d}  has been deleted, the appointment  does NOT exist anymore!!!"
+   
     appointment.destroy
     redirect_to garage_appointments_path(g)
   else

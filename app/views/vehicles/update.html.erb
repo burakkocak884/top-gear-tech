@@ -1,10 +1,13 @@
+<div class ="app_whole">
+
 <h1>Vehicle info Updated!!!</h1>
 <h3>Year: <%= @vehicle.year%></h3>
 <h3>Make: <%= @vehicle.make%></h3>
 <h3>Model: <%= @vehicle.model%></h3>
 <h3>Mileage: <%= @vehicle.mileage%></h3>
 <h3>Tag Number: <%= @vehicle.license_plate%></h3>
+<h3>Exterior Color: <%= @vehicle.color %></h3>
 
 <%= link_to "Update  #{@vehicle.make} #{@vehicle.model}", edit_vehicle_path(@vehicle.id) %></br>
+</div>
 
-<h4>Service records of <%= link_to "#{@vehicle.make} #{@vehicle.model}", services_path(@vehicle.id) %></h4>
