@@ -40,7 +40,7 @@ class GaragesController < ApplicationController
    if @garage.save
    redirect_to garages_path(user)
  else
-  flash[:alert] = "Invalid information"
+  flash[:alert] = @garage.errors.full_messages
 end
    
  else 

@@ -3,11 +3,10 @@
 <% @vehicles.each  do |v| %>
 <li><%= link_to "#{v.year} #{v.make} #{v.model} ", vehicle_path(v)%> </li>
 <% end %>
+<li><%= link_to "Add a Vehicle", new_vehicle_path(@customer.id) %></li>
+
+<li><%= link_to 'Back to Garages', garages_path(@user) %></li>
 </ul>
 
 
-
-<%= link_to "Add a Vehicle", new_vehicle_path(@customer.id) %></br>
-
-<%= link_to 'Back to Garages', garages_path(@user) %>
 

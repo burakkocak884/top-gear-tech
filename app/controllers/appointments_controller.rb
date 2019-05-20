@@ -36,7 +36,7 @@ class AppointmentsController < ApplicationController
      
          @appointment = Appointment.new(appointment_params)
 
-         @appointment.save
+         if @appointment.save
          @appointment.vehicle.customer_id = @appointment.customer_id
          @appointment.vehicle.save
 
@@ -49,7 +49,9 @@ class AppointmentsController < ApplicationController
           redirect_to garage_appointments_path(garage)
        
         else 
+          flash[:alert] = @appointment.errors.full_messages
         redirect_to user_session_path
+      end
         end
       end
       
@@ -91,7 +93,7 @@ class AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     g = appointment.garage
     d = appointment.date
-    @message = "Since the customer for the appointment on #{d}  has been deleted, the appointment  does NOT exist anymore!!!"
+    
    
     appointment.destroy
     redirect_to garage_appointments_path(g)

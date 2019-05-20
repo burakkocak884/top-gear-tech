@@ -26,8 +26,18 @@ end
   @customer.build_vehicle
   end
 
-  def create
-  @customer = Customer.create(customer_params)
+  def create 
+    if user_signed_in?
+  @customer = Customer.new(customer_params)
+  if @customer.save
+    redirect_to customer_path(@customer)
+  else
+    flash[:alert] = @customer.errors.full_messages
+    new_vehicle_path(@customer)
+  end
+else
+  redirect_to user_session_path
+end
   end
 
   def edit
