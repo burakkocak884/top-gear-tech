@@ -1,77 +1,70 @@
 class CustomersController < ApplicationController
- def index
-   if user_signed_in?
-   
+     
 
-    @customers = Customer.where(garage_id: params[:format].to_i)
-    @garage = Garage.find_by_id(params[:format].to_i)
-  else
-     redirect_to user_session_path
-   end
-  end
+     def index
+         if user_signed_in?
+          @customers = Customer.where(garage_id: params[:format].to_i)
+          @garage = Garage.find_by_id(params[:format].to_i)
+        else
+           redirect_to user_session_path
+         end
+      end
 
-  def show
-     if user_signed_in?
+      def show
+         if user_signed_in?
+          @customer = Customer.find(params[:id])
+         else
+          redirect_to user_session_path
+         end
+      end
 
-   
-      @customer = Customer.find(params[:id])
-    else
-      redirect_to user_session_path
+      def new
+        @customer = Customer.new
+        @customer.build_vehicle
+      end
 
-  end
-end
+      def create 
+        if user_signed_in?
+        @customer = Customer.new(customer_params)
+          if @customer.save
+          redirect_to customer_path(@customer)
+          else
+          flash[:alert] = @customer.errors.full_messages
+          new_vehicle_path(@customer)
+          end
+        else
+       redirect_to user_session_path
+        end
+      end
 
-  def new
-  @customer = Customer.new
-  @customer.build_vehicle
-  end
+      def edit
+        @customer = Customer.find(params[:id])
+      end
 
-  def create 
-    if user_signed_in?
-  @customer = Customer.new(customer_params)
-  if @customer.save
-    redirect_to customer_path(@customer)
-  else
-    flash[:alert] = @customer.errors.full_messages
-    new_vehicle_path(@customer)
-  end
-else
-  redirect_to user_session_path
-end
-  end
+      def update
+          if user_signed_in?
+          @customer = Customer.find(params[:id])
+          @customer.update(customer_params)
+          else
+          redirect_to user_session_path
+          end
+      end
 
-  def edit
-    @customer = Customer.find(params[:id])
-    
-  end
+      def destroy
+          if user_signed_in?
+          customer = Customer.find(params[:id])
+          customer.destroy
+          redirect_to garages_path(current_user)
+          else
+            redirect_to user_session_path
+          end
+      end
 
-  def update
-    if user_signed_in?
-   @customer = Customer.find(params[:id])
-   @customer.update(customer_params)
- else
-  redirect_to user_session_path
 
-  end
-
-  end
-
-  def destroy
-
-    if user_signed_in?
-    customer = Customer.find(params[:id])
-  
-
-    
-    customer.destroy
-    redirect_to garages_path(current_user)
-    else
-      redirect_to user_session_path
-
-  end
-end
   private
-  def customer_params
-    params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance, :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color])
-  end
+
+  
+    def customer_params
+      params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance, :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color])
+    end
 end
