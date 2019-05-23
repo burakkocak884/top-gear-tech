@@ -1,4 +1,6 @@
 class Garage < ApplicationRecord
+	
+
 	has_many :appointments
 	has_many :customers, through: :appointments
 	has_many :vehicles, through: :customers
