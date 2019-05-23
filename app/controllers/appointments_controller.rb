@@ -65,26 +65,23 @@ class AppointmentsController < ApplicationController
         end
       end
 
-  def destroy
-     if user_signed_in?
-    appointment = Appointment.find(params[:id])
-    g = appointment.garage
-    d = appointment.date
-    
-   
-    appointment.destroy
-    redirect_to garage_appointments_path(g)
-  else
-   redirect_to user_session_path
-  end
-
-  end
+      def destroy
+         if user_signed_in?
+         appointment = Appointment.find(params[:id])
+         g = appointment.garage
+         # d = appointment.date
+         appointment.destroy
+         redirect_to garage_appointments_path(g)
+         else
+         redirect_to user_session_path
+         end
+      end
   
 
 
-   def appointment_params
-    params.require(:appointment).permit(:description, :date, :garage_id, :customer_id,
-     :customer_attributes => [:first_name, :last_name ,:standing_balance, :email],
-     :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color] )
-  end
+       def appointment_params
+         params.require(:appointment).permit(:description, :date, :garage_id, :customer_id,
+         :customer_attributes => [:first_name, :last_name ,:standing_balance, :email],
+         :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color] )
+       end
 end
