@@ -1,13 +1,22 @@
 
-<h1>List of customers at <%= @garage.name %></h1>
+<style>
+.customers {
+float: bottom;
 
-<ul>
+}
+</style>
+
+
+<h1 style = "padding: 20px">All customers registered at "<%= @garage.name %>"</h1>
+<h4 style = "padding: 20px">Sorted by "Last Name"</h4>
+<ol>
 	
 		
-	 <% @customers.order(:last_name).each do |c| %>
-	 <li><%= link_to "#{c.last_name} , #{c.first_name}" , customer_path(c) %></li>
+	 <% @garage.customers.order(:last_name).each do |c| %>
+	 <p class = "customers"><%= link_to "#{c.last_name} , #{c.first_name}" , customer_path(c) %></p>
 	 <% end %>
-	</ul>
+	
+	</ol>
 
 
 

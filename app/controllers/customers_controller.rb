@@ -3,6 +3,7 @@ class CustomersController < ApplicationController
 
      def index
          if user_signed_in?
+         
           @customers = Customer.where(garage_id: params[:format].to_i)
           @garage = Garage.find_by_id(params[:format].to_i)
         else
@@ -12,6 +13,7 @@ class CustomersController < ApplicationController
 
       def show
          if user_signed_in?
+
           @customer = Customer.find(params[:id])
          else
           redirect_to user_session_path
@@ -63,7 +65,7 @@ class CustomersController < ApplicationController
 
   private
 
-  
+
     def customer_params
       params.require(:customer).permit(:first_name, :last_name,:email,:standing_balance, :vehicle_attributes => [:year, :make ,:model, :mileage, :license_plate, :color])
     end
