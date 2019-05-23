@@ -21,8 +21,8 @@ class AppointmentsController < ApplicationController
 
       def new
       
-        @garage_id = params[:garage_id]
-        @appointment = Appointment.new(garage_id: params[:format].to_i)
+         #@garage_id = params[:garage_id]
+         @appointment = Appointment.new(garage_id: params[:format].to_i)
 
         @appointment.build_customer
         @appointment.build_vehicle
