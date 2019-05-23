@@ -1,6 +1,6 @@
 
 
-<h1><%= @user.email.split("@")[0].upcase %>'s garages</h1>
+<h1 style = " padding: 20px"><%= @user.email.split("@")[0].upcase %>'s garages</h1>
 <ul>
 <% @garages.each do |g| %>
 	<li><%= link_to g.name, garage_path(g) %></li>

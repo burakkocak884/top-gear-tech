@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
 
      def index
          if user_signed_in?
-         
+
           @customers = Customer.where(garage_id: params[:format].to_i)
           @garage = Garage.find_by_id(params[:format].to_i)
         else
@@ -21,6 +21,7 @@ class CustomersController < ApplicationController
       end
 
       def new
+       
         @customer = Customer.new
         @customer.build_vehicle
       end
