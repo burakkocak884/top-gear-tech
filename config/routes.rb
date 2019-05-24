@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :appointments
   resources :garages do 
-    resources :appointments, only: [:index, :show]
+    resources :appointments, only: [:index, :show, :new]
 
   end
   resources :customers
