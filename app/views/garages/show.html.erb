@@ -16,8 +16,6 @@
 <h2 style = 'color: red'><%= @garage.name %> does NOT repair any makes and models!!!</h2>
 
 <% end %>
-</div>
-
 <div class="app_whole">
 	<%= link_to "All the customers registered here", customers_path(@garage) %><br>
 <%= link_to "Appointments of  #{@garage.name}", garage_appointments_path(@garage) %></br>
@@ -25,5 +23,8 @@
 
 <%= link_to "Delete #{@garage.name}", garage_path(@garage),  :method => :delete %>
 </div>
+</div>
+
+
 
 

@@ -1,6 +1,9 @@
 <h1 class = "app_whole"><%= @garage.name %> located in <%= @garage.location %></h1>
 <ul>
 	<h2>List of Appointments:</h2>
+	<% if @appointments.size == 0 %>
+	<h2 style = "color: brown">Currently , there isn't any appointment set for this location...</h2>
+	<% else %>
 <% @appointments.each do |a| %>
 
 <% if a.customer %>
@@ -9,10 +12,12 @@
 
 <% end %>
 <%end %>
+<% end %>
 <li><%= link_to "Add a New Appointment", appointments_new_path(@garage) %></li>
 <li><%= link_to "Back to the Garage", garage_path(@garage.id) %></li>
 
 </ul>
+<p class = "lifter" ><img  style = "height: 300px; width: 35%; padding: 20px" src = "https://media2.giphy.com/media/1qXjniLSOpxEmscAu6/giphy.gif"></p>
 
 
 

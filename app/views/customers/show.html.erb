@@ -1,6 +1,6 @@
 
 
-<div class = "app_whole">
+<div class = "garage_detail">
 <h1 style = "color: purple">Customer Information Page</h1>
 <h3 class = "titles">Name : </h3><h2><%= @customer.first_name %> <%= @customer.last_name %>(<%= link_to "Update info", edit_customer_path(@customer.id) %>)(<%= link_to "Delete the customer", customer_path, :method => :delete %>)
 </h2> 
