@@ -17,11 +17,11 @@
  User.create(username: 'albr', email: 'mrbrownAl@hotmail.com', password: "password")
  User.create(username: 'theorange', email: 'morange88@tmobile.com', password: "password")
 
-User.destroy_all
+#User.destroy_all
 #garage table. [name, location, running_capacity, customers,employees, special_equipment, tire_installation, service_any_vehicle, user_id]
 Garage.create(name: "Master Tech", location: "Alpharetta, GA",  tire_service: false, service_any_vehicle: true, user_id: 1)
 Garage.create(name: "Speed Tire", location: "Duluth, GA", tire_service: true, service_any_vehicle: true, user_id: 2)
-Garage.destroy_all
+#Garage.destroy_all
 
 
 
@@ -38,7 +38,7 @@ Customer.create(first_name: "Joel", last_name: "Timber",email: "timberj@aol.com"
 Customer.create(first_name: "Beth", last_name: "Bethany",email: "bbfashion@att.com", standing_balance: 0, garage_id: 1)
 Customer.create(first_name: "Olli",  last_name: "Martinez",email: "omtinez@tmobile.com", standing_balance: 0, garage_id: 1)
 Customer.create(first_name: "Mike", last_name: "Miller",email: "mm2019@yahoo.com",standing_balance: 0, garage_id: 1)
-Customer.destroy_all
+#Customer.destroy_all
 
 
 #appointments table [description, date,garage_id, customer_id]
@@ -53,7 +53,7 @@ Appointment.create(description: "Fuel system check", date: "06/10/2019", garage_
 Appointment.create(description: "Emissions test", date: "06/22/2019", garage_id: 2, customer_id: 9)
 Appointment.create(description: "60k miles tune-up", date: "06/13/2019", garage_id: 1, customer_id: 3)
 Appointment.create(description: "Shocks", date: "06/07/2019", garage_id: 1, customer_id: 1)
-Appointment.destroy_all
+#Appointment.destroy_all
 #vehicles table[make, model,trim: year, mileage, license_plate, color, type,  customer_id]
 Vehicle.create(make: "Toyota", model: "Sienna", year: 2010, mileage: 59776, license_plate: "MTB425", color: "Silver" ,  customer_id: 1)
 Vehicle.create(make: "Honda", model: "Civic", year: 2011, mileage: 220573, license_plate: "PJL2018", color: "White"  , customer_id: 3)
@@ -79,7 +79,7 @@ Vehicle.create(make: "Mercury", model: "Mountainer" ,year: 2004, mileage: 159845
 Vehicle.create(make: "Honda", model: "Fit" ,year: 2011, mileage: 1225674, license_plate: "MUT8655", color: "Silver" ,  customer_id: 3)
 Vehicle.create(make: "Mazda", model: "3" ,year: 2012, mileage: 19984, license_plate: "JHG8766", color: "Silver" ,  customer_id: 1)
 Vehicle.create(make: "Subaru", model: "Forester" ,year: 2015, mileage: 156544, license_plate: "KUT5673", color: "Silver" ,  customer_id: 16)
-Vehicle.destroy_all
+#Vehicle.destroy_all
 
 
 
