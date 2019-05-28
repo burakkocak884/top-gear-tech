@@ -1,0 +1,11 @@
+
+<div class ="app_whole">
+<h1>List of appointments in given dates</h1>
+<ol>
+<% @appointments.each do|a|%>
+	<li style = "color: orange"><%= link_to a.date, appointment_path(a) %></li><br>
+	<% end %>
+</ol>
+
+<h4><%= link_to "Back to Appointments", garage_appointments_path(@appointment.garage.id) %></h4>
+</div>

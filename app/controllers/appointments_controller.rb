@@ -1,10 +1,16 @@
 class AppointmentsController < ApplicationController
       
+      def date_picker
+          @appointments = Appointment.where(:date => params[:date1]..params[:date2])
+          render :'appointments/appointment.html'
+      end
+
+
       def index
           if user_signed_in?
           @appointments = Appointment.where(garage_id: params[:garage_id])
           @garage = Garage.find_by_id(params[:garage_id])
-        
+         @customers = Garage.where(garage_id: params[:garage_id])
          else
            redirect_to user_session_path
          end
@@ -13,7 +19,9 @@ class AppointmentsController < ApplicationController
 
       def show
         if user_signed_in?
-
+    
+         
+        
          @appointment = Appointment.find(params[:id])
         else
           redirect_to user_session_path
@@ -32,15 +40,21 @@ class AppointmentsController < ApplicationController
       def create
           if user_signed_in?
             user = current_user
+         
             @appointment = Appointment.new(appointment_params)
           if @appointment.save
-             if params[:appointment][:customer_id]
+             if params[:appointment][:customer_id] != ""
+
               @appointment.vehicle.customer_id = params[:appointment][:customer_id]
+              
               @appointment.customer_id = params[:appointment][:customer_id]
+      
               @appointment.customer.save
             else
              @appointment.vehicle.customer_id = @appointment.customer_id
-             end
+      
+            end
+            
              @appointment.vehicle.save
 
             

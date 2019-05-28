@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'appointments/edit'
   get 'appointments/update'
   devise_for :users, :controllers => { :registrations => "registrations", omniauth_callbacks: "callbacks"}
+ post 'appointments/dates', to: 'appointments#date_picker'
  
-
   
 
   root 'sessions#home'

@@ -20,6 +20,12 @@
 <p class = "lifter" ><img  style = "height: 300px; width: 35%; padding: 20px" src = "https://media2.giphy.com/media/1qXjniLSOpxEmscAu6/giphy.gif"></p>
 
 
+<h2 style = "color:yellow">Select a date to see all the appointments </h2>
+<%= form_tag  appointments_dates_path do  %>
 
+<%= date_field_tag :date1 %>
+<%= date_field_tag :date2 %>
+<%= submit_tag "Find Appointments" %>
+<% end %>
 
 
