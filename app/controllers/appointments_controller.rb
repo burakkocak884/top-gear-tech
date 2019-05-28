@@ -1,8 +1,13 @@
 class AppointmentsController < ApplicationController
       
       def date_picker
-          @appointments = Appointment.where(:date => params[:date1]..params[:date2])
+        if user_signed_in?
+        
+          @appointments = Appointment.where(:date => params[:date1]..params[:date2], :garage_id => params[:garage_id])
           render :'appointments/appointment.html'
+        else
+            redirect_to user_session_path
+         end
       end
 
 

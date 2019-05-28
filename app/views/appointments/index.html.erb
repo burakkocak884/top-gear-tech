@@ -21,7 +21,7 @@
 
 
 <h2 style = "color:yellow">Select a date to see all the appointments </h2>
-<%= form_tag  appointments_dates_path do  %>
+<%= form_tag  appointments_dates_path(garage_id: @garage) do  %>
 
 <%= date_field_tag :date1 %>
 <%= date_field_tag :date2 %>
