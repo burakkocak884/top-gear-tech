@@ -46,21 +46,25 @@ class AppointmentsController < ApplicationController
           if user_signed_in?
             user = current_user
          
+           
             @appointment = Appointment.new(appointment_params)
+        
           if @appointment.save
-             if params[:appointment][:customer_id] != ""
+           
+            #  if params[:appointment][:customer_id] != "" || params[:appointment][:customer_id] != nil
 
-              @appointment.vehicle.customer_id = params[:appointment][:customer_id]
+            #   @appointment.vehicle.customer_id = params[:appointment][:customer_id]
               
-              @appointment.customer_id = params[:appointment][:customer_id]
+            #   @appointment.customer_id = params[:appointment][:customer_id]
+            # byebug
+            #   @appointment.customer.save
+            # else
+          
+            #  @appointment.vehicle.customer_id = @appointment.customer_id
       
-              @appointment.customer.save
-            else
-             @appointment.vehicle.customer_id = @appointment.customer_id
-      
-            end
+            # end
             
-             @appointment.vehicle.save
+             # @appointment.vehicle.save
 
             
              garage = @appointment.garage
