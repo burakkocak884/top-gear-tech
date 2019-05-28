@@ -20,12 +20,12 @@
 <p class = "lifter" ><img  style = "height: 300px; width: 35%; padding: 20px" src = "https://media2.giphy.com/media/1qXjniLSOpxEmscAu6/giphy.gif"></p>
 
 
-<h2 style = "color:yellow">Select a date to see all the appointments </h2>
+<h2 style = "color:yellow">Select a date to see all the appointments associated at "<%= @garage.name %>"</h2>
 <%= form_tag  appointments_dates_path(garage_id: @garage) do  %>
 
-<%= date_field_tag :date1 %>
+<h3 style = "color: orange">From <%= date_field_tag :date1 %> to 
 <%= date_field_tag :date2 %>
-<%= submit_tag "Find Appointments" %>
+<%= submit_tag "Find Appointments" %></h3>
 <% end %>
 
 
