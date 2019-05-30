@@ -3,7 +3,8 @@ class AppointmentsController < ApplicationController
       def date_picker
         if user_signed_in?
         
-          @appointments = Appointment.where(:date => params[:date1]..params[:date2], :garage_id => params[:garage_id])
+          @appointments = Appointment.where(:garage_id => params[:garage_id], :date => params[:date1]..params[:date2])
+        
           render :'appointments/appointment.html'
         else
             redirect_to user_session_path
@@ -16,6 +17,7 @@ class AppointmentsController < ApplicationController
           @appointments = Appointment.where(garage_id: params[:garage_id])
           @garage = Garage.find_by_id(params[:garage_id])
          @customers = Garage.where(garage_id: params[:garage_id])
+       
          else
            redirect_to user_session_path
          end

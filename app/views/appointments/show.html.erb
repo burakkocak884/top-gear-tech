@@ -5,7 +5,7 @@
 
 <h2 style = "background-color: gray">Appointment for <%= link_to "#{@appointment.customer.first_name} #{@appointment.customer.last_name}", customer_path(@appointment.customer.id) %> at <%= @appointment.garage.name %></h2>
 <div class = "garage_detail">
-<h3 class = "titles">Date: <h2 style = "color: white"><%= @appointment.date %><h2></h3>
+<h3 class = "titles">Date: <h2 style = "color: white"><%= @appointment.date.strftime("%A, %d %b %Y") %><h2></h3>
 <h3 class = "titles">Type of Service: </h3> <h2 style = "color :white"><%= @appointment.description %></h2>
 
 <h3 class = "titles">For : </h3><h2 style = "color :white"><%= @appointment.vehicle.year %>-<%= @appointment.vehicle.make %>-<%= @appointment.vehicle.model %></h2> 

@@ -3,7 +3,7 @@
 <h1 style = "color: brown">List of appointments in given dates</h1>
 <ol>
 <% @appointments.each do|a|%>
-	<li style = "color: orange"><%= link_to a.date, appointment_path(a) %></li><br>
+	<li style = "color: orange"><%= link_to a.date.strftime("%A, %d %b %Y"), appointment_path(a) %></li><br>
 	<% end %>
 </ol>
 
