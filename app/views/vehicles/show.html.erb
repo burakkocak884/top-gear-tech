@@ -2,12 +2,12 @@
 
 <h1>Details of the vehicle</h1>
 
-<h3>Year: <%= @vehicle.year%></h3>
-<h3>Make: <%= @vehicle.make%></h3>
-<h3>Model: <%= @vehicle.model%></h3>
-<h3>Mileage: <%= @vehicle.mileage%></h3>
-<h3>Tag Number: <%= @vehicle.license_plate%></h3>
-<h3>Exterior Color: <%= @vehicle.color %></h3>
+<h3>Year: <span id = 'vehicle'><%= @vehicle.year%></span></h3>
+<h3>Make: <span id = 'vehicle'><%= @vehicle.make%></span></h3>
+<h3>Model: <span id = 'vehicle'><%= @vehicle.model%></span></h3>
+<h3>Mileage: <span id = 'vehicle'><%= @vehicle.mileage%></span></h3>
+<h3>Tag Number: <span id = 'vehicle'><%= @vehicle.license_plate%></span></h3>
+<h3>Exterior Color: <span id = 'vehicle'><%= @vehicle.color %></span></h3>
 <%= link_to "Update  #{@vehicle.make} #{@vehicle.model}", edit_vehicle_path(@vehicle.id) %></br>
 <%= link_to "Delete #{@vehicle.make} #{@vehicle.model}", vehicle_path(@vehicle), :method => :delete %>
 </div>

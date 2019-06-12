@@ -30,6 +30,10 @@ class AppointmentsController < ApplicationController
          
         
          @appointment = Appointment.find(params[:id])
+          respond_to do |format|
+          format.html { render :show}
+          format.json {render json: @appointment}
+        end
         else
           redirect_to user_session_path
         end
@@ -53,22 +57,6 @@ class AppointmentsController < ApplicationController
         
           if @appointment.save
            
-            #  if params[:appointment][:customer_id] != "" || params[:appointment][:customer_id] != nil
-
-            #   @appointment.vehicle.customer_id = params[:appointment][:customer_id]
-              
-            #   @appointment.customer_id = params[:appointment][:customer_id]
-            # byebug
-            #   @appointment.customer.save
-            # else
-          
-            #  @appointment.vehicle.customer_id = @appointment.customer_id
-      
-            # end
-            
-             # @appointment.vehicle.save
-
-            
              garage = @appointment.garage
           
              # @garage = @appointment.garage_id

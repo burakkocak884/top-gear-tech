@@ -5,6 +5,10 @@ class GaragesController < ApplicationController
         if user_signed_in?
          @garages = Garage.where(user_id: params[:format])
         @user = current_user
+        
+        
+
+      
          else
             redirect_to user_session_path
           end
@@ -16,6 +20,10 @@ class GaragesController < ApplicationController
         @garage = Garage.find(params[:id])
         @appointment = @garage.appointments.build
         @user = current_user
+        respond_to do |format|
+          format.html { render :show}
+          format.json {render json: @garage}
+        end
         else
         redirect_to user_session_path
         end
@@ -51,6 +59,11 @@ class GaragesController < ApplicationController
           @garage.update(garage_params)
 
           @user = current_user
+
+          respond_to do |format|
+          format.html { render :show}
+          format.json {render json: @garage}
+        end
           
          else
           redirect_to user_session_path

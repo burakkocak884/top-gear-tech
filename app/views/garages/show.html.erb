@@ -1,8 +1,8 @@
 
 <div class = "garage_detail">
-<h3 class = "titles">Garage Name: </h3><h2 style = 'color: green'><%= @garage.name %></h2>
-<h3 class = "titles">Location: </h3><h2 style = 'color: green'><%= @garage.location %></h2>
-
+<h3 id = "garageName" class = "titles">Garage Name:  <span id = 'vehicle'><%= @garage.name %></span></h3>
+<h3 id ="garageLocation" class = "titles">Location:  <span id = 'vehicle'><%= @garage.location %></span></h3>
+<div id ="garageTire">
 <% if @garage.tire_service == true %>
 
  <h2 style = 'color: orange'><%= @garage.name %> now offers tire service!!!</h2>
@@ -10,12 +10,15 @@
  <h2 style = 'color: red'><%= @garage.name %> does NOT offer tire service at this location!!!</h2>
 
 <% end %>
+</div>
+<div id ="garageService">
 <% if @garage.service_any_vehicle == true %>
 <h2 style = 'color: orange'><%= @garage.name %> can service any makes and models!!!</h2>
 <% else %>
 <h2 style = 'color: red'><%= @garage.name %> does NOT repair any makes and models!!!</h2>
 
 <% end %>
+</div>
 <div class="app_whole">
 	<%= link_to "All the customers registered here", customers_path(@garage) %><br>
 <%= link_to "Appointments of  #{@garage.name}", garage_appointments_path(@garage) %></br>
@@ -24,6 +27,50 @@
 <%= link_to "Delete #{@garage.name}", garage_path(@garage),  :method => :delete %>
 </div>
 </div>
+
+<h2>Click <a href= "#"  class="js-previous" data-id = "<%= @garage.id %>" >Previous</a> to see next Garage</h2>
+<h2>Click <a href= "#"  class="js-next" data-id = "<%= @garage.id %>" >Next</a> to see next Garage</h2>
+
+
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(e) {
+  	e.preventDefault()
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.getJSON("/garages/" + nextId , function(data) {
+      $("#garageName").text(data["name"]);
+      $("#garageLocation").text(data["location"]);
+      $("#garageTire").text(data["tire_service"]);
+      $("#garageService").text(data["service_any_vehicle"]);
+      
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+
+
+$(function () {
+  $(".js-previous").on("click", function(e) {
+  	e.preventDefault()
+    var nextId = parseInt($(".js-next").attr("data-id")) - 1;
+    $.getJSON("/garages/" + nextId , function(data) {
+
+      $("#garageName").text(data["name"]);
+      $("#garageLocation").text(data["location"]);
+      $("#garageTire").text(data["tire_service"]);
+      $("#garageService").text(data["service_any_vehicle"]);
+      // re-set the id to current on the link
+      $(".js-previous").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
+
+
+
 
 
 

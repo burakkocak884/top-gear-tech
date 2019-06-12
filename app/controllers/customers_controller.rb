@@ -15,6 +15,10 @@ class CustomersController < ApplicationController
          if user_signed_in?
 
           @customer = Customer.find(params[:id])
+           respond_to do |format|
+          format.html { render :show}
+          format.json {render json: @customer.to_json(only: [:first_name, :last_name,:email,:standing_balance,:garage_id])}
+          end
          else
           redirect_to user_session_path
          end

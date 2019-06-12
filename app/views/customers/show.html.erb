@@ -15,7 +15,7 @@
 <% if  @customer.vehicles.size == 0  %>
 <h2 style = "color: red"><%=  @customer.first_name %> currently doesnt have any vehicles in the system...</h2>
 <% else %>
-<h2>This customer has "<%= @customer.vehicles.size %>" <%= link_to "Vehicle(s)", vehicles_path(@customer) %> in the system...</h2>
+<h2>This customer has "<span id = 'vehicle'><%= @customer.vehicles.size %></span>" <%= link_to "Vehicle(s)", vehicles_path(@customer) %> in the system...</h2>
 
 
 <% end %>
