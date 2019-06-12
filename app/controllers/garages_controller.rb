@@ -1,6 +1,6 @@
 class GaragesController < ApplicationController
      
-
+#ready to start at javascript project
      def index
         if user_signed_in?
          @garages = Garage.where(user_id: params[:format])
