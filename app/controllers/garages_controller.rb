@@ -4,10 +4,13 @@ class GaragesController < ApplicationController
      def index
         if user_signed_in?
       
-         @garages = Garage.where(user_id: params[:id])
+         @garages = Garage.where(user_id: current_user.id)
         @user = current_user
-        
-        
+       
+        # respond_to do |format|
+        #   format.html { render :show}
+        #   format.json {render json: @garages}
+        # end
 
       
          else

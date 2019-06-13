@@ -15,9 +15,14 @@ class AppointmentsController < ApplicationController
       def index
           if user_signed_in?
           @appointments = Appointment.where(garage_id: params[:garage_id])
+       
           @garage = Garage.find_by_id(params[:garage_id])
          @customers = Garage.where(garage_id: params[:garage_id])
-       
+      respond_to do |format|
+
+          format.html { render :index}
+          format.json {render json: @appointments}
+        end
          else
            redirect_to user_session_path
          end
