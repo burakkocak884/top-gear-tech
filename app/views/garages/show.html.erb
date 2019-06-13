@@ -20,7 +20,13 @@
 <% end %>
 </div>
 <div class="app_whole">
-	<%= link_to "All the customers registered here", customers_path(@garage) %><br>
+	All the <a href = "#" class ="js-customers" data-id = "<%= @garage.id %>">customers </a>registered here<br>
+ 
+
+
+
+
+
 <%= link_to "Appointments of  #{@garage.name}", garage_appointments_path(@garage) %></br>
 <%= link_to "Update  #{@garage.name.upcase}'s info", edit_garage_path(@garage.id) %></br>
 
@@ -44,7 +50,7 @@ $(function () {
       $("#garageLocation").text(data["location"]);
       $("#garageTire").text(data["tire_service"]);
       $("#garageService").text(data["service_any_vehicle"]);
-      
+     $("garageCustomers").text(data["id"] + 1)
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
@@ -57,16 +63,34 @@ $(function () {
   	e.preventDefault()
     var nextId = parseInt($(".js-next").attr("data-id")) - 1;
     $.getJSON("/garages/" + nextId , function(data) {
-
       $("#garageName").text(data["name"]);
       $("#garageLocation").text(data["location"]);
       $("#garageTire").text(data["tire_service"]);
       $("#garageService").text(data["service_any_vehicle"]);
+      $("garageCustomers").text(data["id"] - 1)
       // re-set the id to current on the link
       $(".js-previous").attr("data-id", data["id"]);
     });
   });
 });
+
+// $(function () {
+
+//   $(".js-customers").on("click", function(e) {
+//   	e.preventDefault()
+//     var nextId = parseInt($(".js-next").attr("data-id")) ;
+//     $.getJSON("/garages/" + nextId + "/customers", function(data) {
+    
+
+
+//       $("#garageCustomers").text(data["id"]);
+      
+     
+//       // re-set the id to current on the link
+//       $(".js-customers").attr("data-id", data["id"]);
+//     });
+//   });
+// });
 </script>
 
 
