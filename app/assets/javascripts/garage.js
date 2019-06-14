@@ -22,7 +22,20 @@ $('button#garageAppointments').on('click', function(event) {
 
 let garageId = event["currentTarget"]["dataset"]["id"]
  getAppointments(garageId);
+})
+//$(document).on('click', 'a.section', function(event) 
+$(document).on('click', 'button#appointmentDetail',function(event) {
 
+ event.preventDefault()
+ let appointmentId = event["currentTarget"]["dataset"]["id"]
+ let garageUrl = event["currentTarget"]["baseURI"]
+ appointmentDetails(appointmentId, garageUrl)
+
+
+ 
+
+// let appointmentId = event["currentTarget"]["dataset"]["id"]
+//  getAppointments(garageId);
 
 })
 }
@@ -117,6 +130,13 @@ function getAppointments(theId){
  $.getJSON("/garages/" + theId + "/appointments", function(data)  {
 
  console.log("the data is.. :", data);
+
+data.sort(function(a, b) {
+    a = new Date(a.date);
+    b = new Date(b.date);
+    return a>b ? -1 : a<b ? 1 : 0;
+});
+
   data.forEach(myFunction);
  
   function myFunction (appt){
@@ -154,12 +174,67 @@ class Appointment {
 Appointment.prototype.appointmentHTML = function(){
 
 return (`
- <ul><li style="color:red">${this.date}</li>
+ <ul><li><button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}"> ${this.date} <div class ="garageDetail" id = "appointment-details-${this.id}" data-id ="${this.id}"></div></button></li>
+ 
+ 
+
 </ul>
 `)
 }
+ function appointmentDetails(id, url) {
+ 
+ $.getJSON(url + "/appointments/" + id, function(data)  {
 
 
+  let myAppt = new Appointment(data)
+ myAppt.firstName = data.customer.first_name
+ myAppt.lastName = data.customer.last_name
+ myAppt.email = data.customer.email
+ myAppt.balance = data.customer.standing_balance
+ myAppt.vehicleYear = data.vehicle.year
+ myAppt.vehicleMake= data.vehicle.make
+ myAppt.vehicleModel = data.vehicle.model
+ myAppt.vehicletag = data.vehicle.license_plate
+ myAppt.vehicleMileage= data.vehicle.mileage
+ myAppt.vehicleColor = data.vehicle.color
+
+
+
+
+
+ let theAppt = myAppt.theAppointmentHTML()
+
+  document.getElementById(`appointment-details-${id}`).innerHTML = theAppt
+
+
+
+
+ })
+}
+Appointment.prototype.theAppointmentHTML = function (){
+  
+return (`
+  
+  Description:<h2>${this.description}</h2><br>
+  <h1> << Customer Info >> </h1>
+   Name: <h2> ${this.firstName} ${this.lastName}</h2>
+  
+  Email: <h2>${this.email}</h2>
+  Standing balance : <h2> $ ${this.balance}</h2>
+  <h1> << Vehicle Info >> </h1>
+  Year: <h2>${this.vehicleYear}</h2>
+  Make: <h2>${this.vehicleMake}</h2>
+  Model:<h2>${this.vehicleModel}</h2>
+  License Plate: <h2>${this.vehicletag}</h2>
+  Current Mileage: <h2>${this.vehicleMileage}</h2>
+  Exterior Color: <h2>${this.vehicleColor}</h2>
+
+  `)
+
+
+
+
+}
 
 
 
