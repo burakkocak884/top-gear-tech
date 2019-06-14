@@ -30,13 +30,23 @@ $(document).on('click', 'button#appointmentDetail',function(event) {
  let appointmentId = event["currentTarget"]["dataset"]["id"]
  let garageUrl = event["currentTarget"]["baseURI"]
  appointmentDetails(appointmentId, garageUrl)
+})
+
+$('#new_garage').on('submit', function(event){
+  event.preventDefault()
+  
 
 
- 
+  const values = $(this).serialize()
 
-// let appointmentId = event["currentTarget"]["dataset"]["id"]
-//  getAppointments(garageId);
+  $.post("/garages", values)
+  .done(function(data){
 
+    const newGarage = new Garage(data) 
+    const newGarageToAdd = newGarage.formatGarageHTML()
+    document.getElementById('garages-list').innerHTML = newGarageToAdd
+  })
+  
 })
 }
 
@@ -230,11 +240,18 @@ return (`
   Exterior Color: <h2>${this.vehicleColor}</h2>
 
   `)
+}
+ 
+Garage.prototype.formatGarageHTML = function(){
+  return = ( `
+  <h3>${this.name}</h3>
 
-
+`)
 
 
 }
+
+
 
 
 

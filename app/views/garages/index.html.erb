@@ -1,6 +1,7 @@
 
 
 <h1 style = " padding: 20px"><%= @user.email.split("@")[0].upcase %>'s garages</h1>
+<div id ="garages-list">
 <ul>
 <% @garages.each do |g| %>
 	<li><%= link_to g.name, garage_path(g) %></li>
@@ -8,6 +9,6 @@
 
 
 
-<li ><%= link_to "Add a New Garage", new_garage_path(@user) %></li>
+<li ><%= link_to "Add a New Garage", new_garage_path %></li>
 </ul>
-<h1>Started working on JavaScript project</h1>
+<div id ="garages-list"></div>
