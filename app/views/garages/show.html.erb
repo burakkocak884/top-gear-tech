@@ -1,16 +1,22 @@
 
 <div class = "garage_detail">
 <h3 id = "garageName" class = "titles">Garage Name:  <span id = 'vehicle'><%= @garage.name %></span></h3>
-<h3 id ="garageLocation" class = "titles">Location:  <span id = 'vehicle'><%= @garage.location %></span></h3>
+<button class ="js-previous" data-id = "<%= @garage.id%>">Previous</button>
+<button class ="js-next" data-id = "<%= @garage.id%>">Next</button><br>
+
+<button id ="garageAppointments" data-id = "<%= @garage.id%>">Appointments</button>
 
 
 
 
-<h2>Click <a href= "#"  class="js-previous" data-id = "<%= @garage.id %>" >Previous</a> to see next Garage</h2>
-<h2>Click <a href= "#"  class="js-next" data-id = "<%= @garage.id %>" >Next</a> to see next Garage</h2>
 
-<button id = 'garages-data'>Garage details</button>
+<button id = 'garages-data' data-id = "<%= @garage.id%>">Garage details</button>
 </div>
+
+
+ <div class ="garageDetails" id = "garage-details"></div>
+
+ <div class ="garageDetail" id = "appointments-list"></div>
 
 
 

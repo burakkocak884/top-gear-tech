@@ -16,4 +16,4 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-console.log("hello");
+console.log("getting ready to start!!!");
