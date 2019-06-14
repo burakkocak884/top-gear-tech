@@ -2,169 +2,234 @@
 
 
 
-$(function(){
-  console.log('garages are loading!!!')
- listenForClick()
-});
+    $(function(){
+        console.log('garages are loading!!!')
+       listenForClick()
+    });
 
 
- function listenForClick(){
-$('button#garages-data').on('click', function(event) {
- event.preventDefault()
+   function listenForClick(){
+           
+            $('button#garages-data').on('click', function(event) {
+                 event.preventDefault()
+
+                let garageId = event["currentTarget"]["dataset"]["id"]
+                 getGarage(garageId);
+
+            })
+            $('button#nextGarage').on('click', function(event) {
+                 event.preventDefault()
+
+                let garageId = event["currentTarget"]["dataset"]["id"]
+                 nextGarage(garageId);
+
+            })
+             $('button#previousGarage').on('click', function(event) {
+                 event.preventDefault()
+
+                let garageId = event["currentTarget"]["dataset"]["id"]
+                 previousGarage(garageId);
+                })
+            $('button#garageAppointments').on('click', function(event) {
+                 event.preventDefault()
+
+                let garageId = event["currentTarget"]["dataset"]["id"]
+                 getAppointments(garageId);
+            })
+
+            //$(document).on('click', 'a.section', function(event) 
+            $(document).on('click', 'button#appointmentDetail',function(event) {
+
+                 event.preventDefault()
+                 let appointmentId = event["currentTarget"]["dataset"]["id"]
+                 let garageUrl = event["currentTarget"]["baseURI"]
+                 appointmentDetails(appointmentId, garageUrl)
+            })
+
+
+            $('#new_garage').on('submit', function(event){
+                  event.preventDefault()
+                  const values = $(this).serialize()
+                  $.post("/garages", values)
+                  .done(function(data){
+
+                    const newGarage = new Garage(data) 
+                    const newGarageToAdd = newGarage.formatGarageHTML()
+                    document.getElementById('garages-list').innerHTML = newGarageToAdd
+              })
+              
+            })
+  }
+
+
+    function getGarage(theId){
+
+        $.getJSON("/garages/" + theId , function(data)  {
+         
+         console.log("the data is :", data);
+
+         let myGarage = new Garage(data);
+
+         let myGarHTML = myGarage.garageHTML()
+
+
+         document.getElementById('garage-details').innerHTML = myGarHTML
+
+        })
+    }
+
+     function nextGarage(theId){
+
+        $.getJSON("/garages/" + theId, function(data)  {
+         
+         console.log("the data is :", data);
 debugger
-let garageId = event["currentTarget"]["dataset"]["id"]
- getGarage(garageId);
+         let myGarage = new Garage(data);
 
-})
-$('button#garageAppointments').on('click', function(event) {
- event.preventDefault()
-
-let garageId = event["currentTarget"]["dataset"]["id"]
- getAppointments(garageId);
-})
-//$(document).on('click', 'a.section', function(event) 
-$(document).on('click', 'button#appointmentDetail',function(event) {
-
- event.preventDefault()
- let appointmentId = event["currentTarget"]["dataset"]["id"]
- let garageUrl = event["currentTarget"]["baseURI"]
- appointmentDetails(appointmentId, garageUrl)
-})
-
-$('#new_garage').on('submit', function(event){
-  event.preventDefault()
-  
+         let myGarHTML = myGarage.garageHTML()
 
 
-  const values = $(this).serialize()
+         document.getElementById('garage-details').innerHTML = myGarHTML
 
-  $.post("/garages", values)
-  .done(function(data){
+        })
+    }
+     function previousGarage(theId){
 
-    const newGarage = new Garage(data) 
-    const newGarageToAdd = newGarage.formatGarageHTML()
-    document.getElementById('garages-list').innerHTML = newGarageToAdd
-  })
-  
-})
-}
+        $.getJSON("/garages/" + theId, function(data)  {
+         
+         console.log("the data is :", data);
+debugger
+         let myGarage = new Garage(data);
 
-
-function getGarage(theId){
+         let myGarHTML = myGarage.garageHTML()
 
 
- 
-  
- $.getJSON("/garages/" + theId , function(data)  {
- 
- console.log("the data is :", data);
+         document.getElementById('garage-details').innerHTML = myGarHTML
 
- let myGarage = new Garage(data);
-
- let myGarHTML = myGarage.garageHTML()
+        })
+    }
 
 
- document.getElementById('garage-details').innerHTML = myGarHTML
-
-})
-}
+const allGarages = []
 
 
-class Garage {
- constructor(grj){
+    class Garage {
+         constructor(grj){
 
- this.id = grj.id
- this.name = grj.name
- this.location = grj.location
- this.tire_service = grj.tire_service
- this.service_any_vehicle = grj.service_any_vehicle
- this.user_id = grj.user_id
-}
-}
-Garage.prototype.garageHTML = function(){
+         this.id = grj.id
+         this.name = grj.name
+         this.location = grj.location
+         this.tire_service = grj.tire_service
+         this.service_any_vehicle = grj.service_any_vehicle
+         this.user_id = grj.user_id
+         allGarages.push(this)
+        }
+    }
 
-return (`
- <div>
- Location: <h3>${this.location}</h3>
- Offers tire service? <h3> ${this.tire_service}</h3>
- Can repair and make and models? <h3>${this.service_any_vehicle}</h3>
 
- 
- 
- </div>
-`)
-}
+
+    Garage.prototype.garageHTML = function(){
+      return (`
+       <div>
+       Location: <h3>${this.location}</h3>
+       Offers tire service? <h3> ${this.tire_service}</h3>
+       Can repair and make and models? <h3>${this.service_any_vehicle}</h3>
+      </div>
+      `)
+    }
+
+        Garage.prototype.formatGarageHTML = function(){
+      return  ( `
+      <h3>${this.name}</h3>
+
+    `)
+    }
+
 
 // fetch to garages to collect array of all $.getJSON -> map into array pf only id's -> only fetch if id is in this array  
 
-$(function () {
-  $(".js-next").on("click", function(e) {
-    e.preventDefault()
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+// $(function () {
+//   $(".js-next").on("click", function(e) {
+//     e.preventDefault()
 
-    $.getJSON("/garages/" + nextId , function(data) {
-      $("#garageName").text(data["name"]);
-      $("#garageLocation").text(data["location"]);
-      $("#garageTire").text(data["tire_service"]);
-      $("#garageService").text(data["service_any_vehicle"]);
+//      // var nextIndex = parseInt($(".js-next").attr("data-index")) + 1;
+//      // var nextArray = parseInt($(".js-next").attr("data-array"));
+//     var currentId = parseInt($(".js-next").attr("data-id")) ;
+//     var currentIndex = parseInt($(".js-next").attr("data-currentIndex")) ;
+//     var arraySize = parseInt($(".js-next").attr("data-arraySize")) ;
+//     var nextIndex = currentIndex + 1
+// //  while (currentIndex < arraySize) {
+// //  var nextIndex = currentIndex + 1
+ 
+// // }
+
+
+
+ 
+
+
+
+
+
+
+
+  
+//     $.getJSON("/garages/" + nextId , function(data) {
+//       $("#garageName").text(data["name"]);
+//       $("#garageLocation").text(data["location"]);
+//       $("#garageTire").text(data["tire_service"]);
+//       $("#garageService").text(data["service_any_vehicle"]);
     
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
-  });
-});
+//       // re-set the id to current on the link
+//       $(".js-next").attr("data-id", data["id"]);
+//     });
+//   });
+// });
 
 
-$(function () {
-  $(".js-previous").on("click", function(e) {
-    e.preventDefault()
-    var previousId = parseInt($(".js-next").attr("data-id")) - 1;
-    $.getJSON("/garages/" + previousId , function(data) {
-      $("#garageName").text(data["name"]);
-      $("#garageLocation").text(data["location"]);
-      $("#garageTire").text(data["tire_service"]);
-      $("#garageService").text(data["service_any_vehicle"]);
+// $(function () {
+//   $(".js-previous").on("click", function(e) {
+//     e.preventDefault()
+//     var previousId = parseInt($(".js-next").attr("data-id"));
+
+//     $.getJSON("/garages/" + previousId , function(data) {
+//       $("#garageName").text(data["name"]);
+//       $("#garageLocation").text(data["location"]);
+//       $("#garageTire").text(data["tire_service"]);
+//       $("#garageService").text(data["service_any_vehicle"]);
      
-      // re-set the id to current on the link
-      $(".js-previous").attr("data-id", data["id"]);
-    });
-  });
-});
+//       // re-set the id to current on the link
+//       $(".js-previous").attr("data-id", data["id"]);
+//     });
+//   });
+// });
+
+
+
+
 
 function getAppointments(theId){
+    $.getJSON("/garages/" + theId + "/appointments", function(data)  {
+      console.log("the data is.. :", data);
+      data.sort(function(a, b) {
+        a = new Date(a.date);
+        b = new Date(b.date);
+        return a>b ? -1 : a<b ? 1 : 0;
+        });
+        data.forEach(myFunction);
+        function myFunction (appt){
+          new Appointment(appt);
+        }
+        
 
 
- 
-  
- $.getJSON("/garages/" + theId + "/appointments", function(data)  {
-
- console.log("the data is.. :", data);
-
-data.sort(function(a, b) {
-    a = new Date(a.date);
-    b = new Date(b.date);
-    return a>b ? -1 : a<b ? 1 : 0;
-});
-
-  data.forEach(myFunction);
- 
-  function myFunction (appt){
-//    for( let i = 0; i < data.length; i++){
-
-       new Appointment(appt);
-
+        const htmlAppts= allAppointments.map(function (appt)  {
+          return (appt.appointmentHTML())
+    })
+    document.getElementById('appointments-list').innerHTML = htmlAppts.join(",")
+    })
 }
-const htmlAppts= allAppointments.map(function (appt)  {
-  return (appt.appointmentHTML())
 
-
-
-})
-document.getElementById('appointments-list').innerHTML = htmlAppts.join(",")
-
-
-})
-}
 const allAppointments  = []
 
 class Appointment {
@@ -183,7 +248,7 @@ class Appointment {
 Appointment.prototype.appointmentHTML = function(){
 
 return (`
- <ul><li><button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}"> ${this.date} <div class ="garageDetail" id = "appointment-details-${this.id}" data-id ="${this.id}"></div></button></li>
+ <ul><li><button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}"> ${this.date} <div class ="garageDetail" id = "appointment-details-${this.id}" data-id ="${this.id}"></div></button><br><button><%= link_to "Delete this appointment", appointment_path(${this}),  :method => :delete %>Delete this appointment</button></li>
  
  
 
@@ -241,14 +306,7 @@ return (`
   `)
 }
  
-Garage.prototype.formatGarageHTML = function(){
-  return  ( `
-  <h3>${this.name}</h3>
 
-`)
-
-
-}
 
 
 

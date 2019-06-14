@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :customers
   resources :vehicles
-  
+
   
   
 

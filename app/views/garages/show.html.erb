@@ -1,10 +1,27 @@
 
 <div class = "garage_detail">
+
+	<% @nextID = @user.garages[@user.garages.index(@garage)].id %>
+<%  if @user.garages.index(@garage) == @user.garages.last  %>
+<% @nextID %> 
+<% else %>
+<% @nextID + 1 %> 
+<% end %> 
+
+
+<% @previousID = @user.garages[@user.garages.index(@garage)].id %>
+<%  if @user.garages.index(@garage) == @user.garages.first  %>
+<% @previousID %> 
+<% else %>
+<% @previousID - 1 %> 
+<% end %>
+
+
 <h3 id = "garageName" class = "titles">Garage Name:  <span id = 'vehicle'><%= @garage.name %></span></h3>
 
 
-<button class ="js-previous" data-id = "<%= @garage.id%>">Previous</button>
-<button class ="js-next" data-id = "<%= @garage.id%>">Next</button><br>
+<button id ="previousGarage" data-id = "<%= @garage.id %>">Previous</button>
+<button id ="nextGarage" data-id = "<%= @garage.id %>">Next</button><br>
 
 <button id ="garageAppointments" data-id = "<%= @garage.id%>">Appointments</button>
 <button id = 'garages-data' data-id = "<%= @garage.id%>">Garage details</button>
@@ -25,7 +42,6 @@
 </div>
 
  
-
 
 
 

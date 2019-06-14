@@ -19,6 +19,13 @@ class GaragesController < ApplicationController
       end
 
 
+
+      def nextgarage
+
+
+      end
+
+
       def show
         if user_signed_in?
         @garage = Garage.find(params[:id])
