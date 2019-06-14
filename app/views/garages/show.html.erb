@@ -1,23 +1,32 @@
 
 <div class = "garage_detail">
 <h3 id = "garageName" class = "titles">Garage Name:  <span id = 'vehicle'><%= @garage.name %></span></h3>
+
+
 <button class ="js-previous" data-id = "<%= @garage.id%>">Previous</button>
 <button class ="js-next" data-id = "<%= @garage.id%>">Next</button><br>
 
 <button id ="garageAppointments" data-id = "<%= @garage.id%>">Appointments</button>
-
-
-
-
-
 <button id = 'garages-data' data-id = "<%= @garage.id%>">Garage details</button>
+
 </div>
+
+
+
+
 
 
  <div class ="garageDetails" id = "garage-details"></div>
 
  <div class ="garageDetail" id = "appointments-list"></div>
- <div class ="garageDetail" id = "appointment-details"></div>
+ <div class ="garageAction">
+ <button ><%= link_to "Edit this Garage's info", edit_garage_path(@garage) %></button></br>
+ <button><%= link_to "Delete #{@garage.name}", garage_path(@garage), :method => :delete %></button>
+</div>
+
+ 
+
+
 
 
 

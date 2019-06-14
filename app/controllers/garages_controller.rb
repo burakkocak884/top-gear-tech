@@ -39,11 +39,15 @@ class GaragesController < ApplicationController
 
       def create
         if user_signed_in?
-          user = current_user
+          @user = current_user
           @garage = Garage.new(garage_params)
-          @garage.user_id = user.id
+          @garage.user_id = @user.id
+          @garages = Garage.where(user_id: current_user.id)
               if @garage.save
-              render json: @garage 
+              respond_to do |f|
+          f.html { render :index}
+          f.json {render json: @garages}
+        end
               else
               flash[:alert] = @garage.errors.full_messages
               end

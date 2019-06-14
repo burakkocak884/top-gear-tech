@@ -11,10 +11,9 @@ $(function(){
  function listenForClick(){
 $('button#garages-data').on('click', function(event) {
  event.preventDefault()
-
+debugger
 let garageId = event["currentTarget"]["dataset"]["id"]
  getGarage(garageId);
-
 
 })
 $('button#garageAppointments').on('click', function(event) {
@@ -243,7 +242,7 @@ return (`
 }
  
 Garage.prototype.formatGarageHTML = function(){
-  return = ( `
+  return  ( `
   <h3>${this.name}</h3>
 
 `)
