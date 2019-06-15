@@ -1,7 +1,7 @@
 
 
 <h1 style = " padding: 20px"><%= @user.email.split("@")[0].upcase %>'s garages</h1>
-
+<img src ='/assets/spinningtire.gif' style="width:142px;height:42px">
 <ul>
 <% @garages.each do |g| %>
 	<li><%= link_to g.name, garage_path(g) %></li>
@@ -16,7 +16,7 @@
 
 
 <button id = "get-my-garages" data-id = "<%= @user.id %>">Let's pull the data in a different way</button>
-<div id ="garages-list">
+<div id ="garages-list" style = "margin: 20px">
 	<button id ="create-garage" data-userId = "<%= @user.id %>">Create New Garage</button>
 	<div id = "garage-form-display"></div>
 

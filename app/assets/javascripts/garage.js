@@ -180,7 +180,7 @@ document.getElementById('garage-form-display').innerHTML = form
 
         Garage.prototype.formatGarageHTML = function(){
       return  ( `
-        Name of the Garage: <h2 style="color: green">${this.name}</h2>
+        <h4>Name of the Shop: <span style="color: green">${this.name}</span></h4>
       <h3><button id = "garage-data" data-id = "${this.id}"><strong>Garage Details</strong><button id ="garageAppointments" data-id = "${this.id}"><strong>Appointments(sorted by date)</strong></button><div class ="garageDetail" id = "appointments-list-${this.id}"></div></h3>
 <h1>---------------------------------------------------</h1>
     `)
