@@ -27,22 +27,6 @@
                  getGarage(garageId);
 
             })
-
-            
-            
-            // $('button#nextGarage').on('click', function(event) {
-            //      event.preventDefault()
-   
-            //      let garageIndex = event["currentTarget"]["dataset"]["index"]
-            //      nextGarage(garageIndex)
-
-            // })
-            //  $('button#previousGarage').on('click', function(event) {
-            //      event.preventDefault()
-
-            //     // let garageId = event["currentTarget"]["dataset"]["id"]
-            //      previousGarage()
-            //     })
            $(document).on('click', 'button#garageAppointments', function(event) {
                  event.preventDefault()
  
@@ -117,36 +101,6 @@
         })
     }
 
-    //  function nextGarage(index){
- 
-    //     $.getJSON("/garages" , function(data)  {
-    //     debugger
-    //      console.log("the data is :", data);
-
-    //      let myGarage = new Garage(data[index]);
-
-    //      let myGarHTML = myGarage.garageHTML()
-
-
-    //      document.getElementById('garage-details').innerHTML = myGarHTML
-
-    //     })
-    // }
-    //  function previousGarage(){
-
-    //     $.getJSON("/garages", function(data)  {
-         
-    //      console.log("the data is :", data);
-
-    //      let myGarage = new Garage(data);
-
-    //      let myGarHTML = myGarage.garageHTML()
-
-
-    //      document.getElementById('garage-details').innerHTML = myGarHTML
-
-    //     })
-    // }
 
 
 const allGarages = []
@@ -185,66 +139,6 @@ const allGarages = []
 <h1>---------------------------------------------------</h1>
     `)
     }
-
-
-// fetch to garages to collect array of all $.getJSON -> map into array pf only id's -> only fetch if id is in this array  
-
-// $(function () {
-//   $(".js-next").on("click", function(e) {
-//     e.preventDefault()
-
-//      // var nextIndex = parseInt($(".js-next").attr("data-index")) + 1;
-//      // var nextArray = parseInt($(".js-next").attr("data-array"));
-//     var currentId = parseInt($(".js-next").attr("data-id")) ;
-//     var currentIndex = parseInt($(".js-next").attr("data-currentIndex")) ;
-//     var arraySize = parseInt($(".js-next").attr("data-arraySize")) ;
-//     var nextIndex = currentIndex + 1
-// //  while (currentIndex < arraySize) {
-// //  var nextIndex = currentIndex + 1
- 
-// // }
-
-
-
- 
-
-
-
-
-
-
-
-  
-//     $.getJSON("/garages/" + nextId , function(data) {
-//       $("#garageName").text(data["name"]);
-//       $("#garageLocation").text(data["location"]);
-//       $("#garageTire").text(data["tire_service"]);
-//       $("#garageService").text(data["service_any_vehicle"]);
-    
-//       // re-set the id to current on the link
-//       $(".js-next").attr("data-id", data["id"]);
-//     });
-//   });
-// });
-
-
-// $(function () {
-//   $(".js-previous").on("click", function(e) {
-//     e.preventDefault()
-//     var previousId = parseInt($(".js-next").attr("data-id"));
-
-//     $.getJSON("/garages/" + previousId , function(data) {
-//       $("#garageName").text(data["name"]);
-//       $("#garageLocation").text(data["location"]);
-//       $("#garageTire").text(data["tire_service"]);
-//       $("#garageService").text(data["service_any_vehicle"]);
-     
-//       // re-set the id to current on the link
-//       $(".js-previous").attr("data-id", data["id"]);
-//     });
-//   });
-// });
-
 
 
 
@@ -334,19 +228,19 @@ Appointment.prototype.theAppointmentHTML = function (){
   
 return (`
   
- <h4>Description: <span id ="textinfo"> ${this.description}</span></h4><br>
-  <h3> << Customer Info >> </h3>
-  <h4> Name:  ${this.firstName} ${this.lastName}</h4>
+ <h4>Description: <span id ="textinfo"> ${this.description}</span></h4>
+  <h3 id ="dividertext"> << Customer Info >> </h3>
+  <h4> Name:  <span id ="textinfo">${this.firstName} ${this.lastName}</span></h4>
   
-  <h4>Email: ${this.email}</h4>
- <h4> Standing balance : $ ${this.balance}</h4>
-  <h3> << Vehicle Info >> </h3>
-  <h4>Year: ${this.vehicleYear}</h4>
-  <h4>Make: ${this.vehicleMake}</h4>
-  <h4>Model: ${this.vehicleModel}</h4>
-  <h4>License Plate: ${this.vehicletag}</h4>
-  <h4>Current Mileage: ${this.vehicleMileage}</h4>
-  <h4>Exterior Color: ${this.vehicleColor}</h4>
+  <h4>Email: <span id ="textinfo">${this.email}</span></h4>
+ <h4> Standing balance : <span id ="textinfo">$ ${this.balance}</span></h4>
+  <h3 id ="dividertext"> << Vehicle Info >> </h3>
+  <h4>Year: <span id ="textinfo">${this.vehicleYear}</span></h4>
+  <h4>Make: <span id ="textinfo">${this.vehicleMake}</span></h4>
+  <h4>Model: <span id ="textinfo">${this.vehicleModel}</span></h4>
+  <h4>License Plate: <span id ="textinfo">${this.vehicletag}</span></h4>
+  <h4>Current Mileage: <span id ="textinfo">${this.vehicleMileage}</span></h4>
+  <h4>Exterior Color: <span id ="textinfo">${this.vehicleColor}</span></h4>
 
   `)
 }
