@@ -42,17 +42,17 @@ Customer.create(first_name: "Mike", last_name: "Miller",email: "mm2019@yahoo.com
 
 
 #appointments table [description, date,garage_id, customer_id]
-Appointment.create(description: "Tune-up", date: "06/16/2019", garage_id: 1, customer_id: 4)
-Appointment.create(description: "Brakes", date: "06/14/2019", garage_id: 1, customer_id: 2)
-Appointment.create(description: "A/C not working", date: "06/22/2019", garage_id: 1, customer_id: 3)
-Appointment.create(description: "Oil Leak", date: "06/01/2019", garage_id: 1, customer_id: 5)
-Appointment.create(description: "Oil Change", date: "06/04/2019", garage_id: 2, customer_id: 7)
-Appointment.create(description: "Driver side CV-axel", date: "06/10/2019", garage_id: 1, customer_id: 4)
-Appointment.create(description: "Power Steering", date: "06/23/2019", garage_id: 1, customer_id: 6)
-Appointment.create(description: "Fuel system check", date: "06/10/2019", garage_id: 2, customer_id: 8)
-Appointment.create(description: "Emissions test", date: "06/22/2019", garage_id: 2, customer_id: 9)
-Appointment.create(description: "60k miles tune-up", date: "06/13/2019", garage_id: 1, customer_id: 3)
-Appointment.create(description: "Shocks", date: "06/07/2019", garage_id: 1, customer_id: 1)
+Appointment.create(description: "Tune-up", date: "06/16/2019", garage_id: 1, customer_id: 4, vehicle_id:1)
+Appointment.create(description: "Brakes", date: "06/14/2019", garage_id: 1, customer_id: 2, vehicle_id:2)
+Appointment.create(description: "A/C not working", date: "06/22/2019", garage_id: 1, customer_id: 3, vehicle_id:3)
+Appointment.create(description: "Oil Leak", date: "06/01/2019", garage_id: 1, customer_id: 5, vehicle_id:4)
+Appointment.create(description: "Oil Change", date: "06/04/2019", garage_id: 2, customer_id: 7, vehicle_id:5)
+Appointment.create(description: "Driver side CV-axel", date: "06/10/2019", garage_id: 1, customer_id: 4, vehicle_id:6)
+Appointment.create(description: "Power Steering", date: "06/23/2019", garage_id: 1, customer_id: 6, vehicle_id:7)
+Appointment.create(description: "Fuel system check", date: "06/10/2019", garage_id: 2, customer_id: 8, vehicle_id:8)
+Appointment.create(description: "Emissions test", date: "06/22/2019", garage_id: 2, customer_id: 9, vehicle_id:9)
+Appointment.create(description: "60k miles tune-up", date: "06/13/2019", garage_id: 1, customer_id: 3, vehicle_id:10)
+Appointment.create(description: "Shocks", date: "06/07/2019", garage_id: 1, customer_id: 1, vehicle_id:11)
 #Appointment.destroy_all
 #vehicles table[make, model,trim: year, mileage, license_plate, color, type,  customer_id]
 Vehicle.create(make: "Toyota", model: "Sienna", year: 2010, mileage: 59776, license_plate: "MTB425", color: "Silver" ,  customer_id: 1)

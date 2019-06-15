@@ -43,17 +43,26 @@
                  let garagesUrl = event["currentTarget"]["baseURI"]
                  appointmentDetails(appointmentId, garageId,  garagesUrl)
             })
+
+            $(document).on('click', 'button#create-garage', function(event) {
+                 event.preventDefault()
+        
+                let userId = event["currentTarget"]["dataset"]["userid"]
+                  createGarage(userId);
+
+            })
+
            
 
 
-            $('#new_garage').on('submit', function(event){
+            $('#new-garage-form').on('submit', function(event){
                   event.preventDefault()
-                  const values = $(this).serialize()
+                  let values = $(this).serialize()
                   $.post("/garages", values)
                   .done(function(data){
 
-                    const newGarage = new Garage(data) 
-                    const newGarageToAdd = newGarage.formatGarageHTML()
+                    let newGarage = new Garage(data) 
+                    let newGarageToAdd = newGarage.formatGarageHTML()
                     document.getElementById('garages-list').innerHTML = newGarageToAdd
               })
               
@@ -117,8 +126,26 @@ const allGarages = []
          this.user_id = grj.user_id
          allGarages.push(this)
         }
-    }
+        static newGarageForm() {
+          
+   return (`
+     <form id=“new-garage-form”>
+       <input id=‘name’ type=‘text’ name=‘garage[name]’ placeholder=“Garage Name”></input><br>
+       <input id=‘location’ type=‘text’ name=‘garage[location]’ placeholder=“Location”></input><br>
+       <input id=‘tire’ type=‘check_box’ name=‘garare[tire_service]’ ></input><br>
+       <input id=‘service’ type=‘check_box’ name=‘garage[service_any_car]’></input><br>
+       <input type =‘submit’/>
+     </form>
+   `)
+ };
 
+
+    }
+    function createGarage(userId){
+
+     $.postJSON("https://localhost:3000/garages/new")
+
+}
 
 
     Garage.prototype.garageHTML = function(){
@@ -139,6 +166,10 @@ const allGarages = []
 <h1>---------------------------------------------------</h1>
     `)
     }
+
+
+
+    
 
 
 
