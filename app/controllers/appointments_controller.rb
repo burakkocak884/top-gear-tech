@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
 
       def index
           if user_signed_in?
+        
           @appointments = Appointment.where(garage_id: params[:garage_id])
        
           @garage = Garage.find_by_id(params[:garage_id])
@@ -33,7 +34,7 @@ class AppointmentsController < ApplicationController
         if user_signed_in?
     
          
-        
+      
          @appointment = Appointment.find(params[:id])
           respond_to do |format|
           format.html { render :show}

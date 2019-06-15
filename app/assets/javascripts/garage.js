@@ -54,10 +54,12 @@
             $(document).on('click', 'button#appointmentDetail',function(event) {
 
                  event.preventDefault()
-                 let appointmentId = event["currentTarget"]["dataset"]["id"]
-                 let garageUrl = event["currentTarget"]["baseURI"]
-                 appointmentDetails(appointmentId, garageUrl)
+                 var appointmentId = event["currentTarget"]["dataset"]["id"]
+                 let garageId = event["currentTarget"]["dataset"]["garage"]
+                 let garagesUrl = event["currentTarget"]["baseURI"]
+                 appointmentDetails(appointmentId, garageId,  garagesUrl)
             })
+           
 
 
             $('#new_garage').on('submit', function(event){
@@ -79,6 +81,7 @@
         $.getJSON("/garages" , function(data)  {
         
          console.log("the data is :", data);
+         allGarages.length = data.length
         data.forEach(myFunction);
         function myFunction (grs){
           new Garage(grs);
@@ -93,7 +96,7 @@
          
 
 
-         document.getElementById('garage-details').innerHTML = htmlGarages.join(",")
+         document.getElementById('garage-details').innerHTML = htmlGarages.join(" ")
           })
       }
 
@@ -177,9 +180,9 @@ const allGarages = []
 
         Garage.prototype.formatGarageHTML = function(){
       return  ( `
-        <h2>${this.name}</h2>
-      <h3><button id = "garage-data" data-id = "${this.id}"><strong>Details</strong><button id ="garageAppointments" data-id = "${this.id}">Appointments</button><div class ="garageDetail" id = "appointments-list"></div></h3>
-
+        Name of the Garage: <h2 style="color: green">${this.name}</h2>
+      <h3><button id = "garage-data" data-id = "${this.id}"><strong>Garage Details</strong><button id ="garageAppointments" data-id = "${this.id}"><strong>Appointments(sorted by date)</strong></button><div class ="garageDetail" id = "appointments-list-${this.id}"></div></h3>
+<h1>---------------------------------------------------</h1>
     `)
     }
 
@@ -265,7 +268,7 @@ function getAppointments(theId){
         const htmlAppts = allAppointments.map(function (appt)  {
           return (appt.appointmentHTML())
     })
-    document.getElementById('appointments-list').innerHTML = htmlAppts.join(",")
+    document.getElementById(`appointments-list-${theId}`).innerHTML = htmlAppts.join(" ")
     })
 }
 
@@ -290,16 +293,16 @@ Appointment.prototype.appointmentHTML = function(){
 
 return (`
  
- <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}"> ${this.date} </button>
+ <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${this.date} </button> <div id ="appointment-details-${this.id}"></div>
  
  
 
 
 `)
 }
- function appointmentDetails(id, url) {
- 
- $.getJSON(url + "/appointments/" + id, function(data)  {
+ function appointmentDetails(appointmentId, garageId,  garagesUrl) {
+
+ $.getJSON( garagesUrl + "/" + garageId + "/appointments/" + appointmentId, function(data)  {
 
 
   let myAppt = new Appointment(data)
@@ -320,7 +323,7 @@ return (`
 
  let theAppt = myAppt.theAppointmentHTML()
 
-  document.getElementById(`appointment-details-${id}`).innerHTML = theAppt
+  document.getElementById(`appointment-details-${appointmentId}`).innerHTML = theAppt
 
 
 
@@ -331,19 +334,19 @@ Appointment.prototype.theAppointmentHTML = function (){
   
 return (`
   
-  Description:<h2>${this.description}</h2><br>
-  <h1> << Customer Info >> </h1>
-   Name: <h2> ${this.firstName} ${this.lastName}</h2>
+ <h4>Description: <span id ="textinfo"> ${this.description}</span></h4><br>
+  <h3> << Customer Info >> </h3>
+  <h4> Name:  ${this.firstName} ${this.lastName}</h4>
   
-  Email: <h2>${this.email}</h2>
-  Standing balance : <h2> $ ${this.balance}</h2>
-  <h1> << Vehicle Info >> </h1>
-  Year: <h2>${this.vehicleYear}</h2>
-  Make: <h2>${this.vehicleMake}</h2>
-  Model:<h2>${this.vehicleModel}</h2>
-  License Plate: <h2>${this.vehicletag}</h2>
-  Current Mileage: <h2>${this.vehicleMileage}</h2>
-  Exterior Color: <h2>${this.vehicleColor}</h2>
+  <h4>Email: ${this.email}</h4>
+ <h4> Standing balance : $ ${this.balance}</h4>
+  <h3> << Vehicle Info >> </h3>
+  <h4>Year: ${this.vehicleYear}</h4>
+  <h4>Make: ${this.vehicleMake}</h4>
+  <h4>Model: ${this.vehicleModel}</h4>
+  <h4>License Plate: ${this.vehicletag}</h4>
+  <h4>Current Mileage: ${this.vehicleMileage}</h4>
+  <h4>Exterior Color: ${this.vehicleColor}</h4>
 
   `)
 }
