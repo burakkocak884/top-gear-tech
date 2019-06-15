@@ -132,9 +132,9 @@ const allGarages = []
      <form id=“new-garage-form”>
        <input id=‘name’ type=‘text’ name=‘garage[name]’ placeholder=“Garage Name”></input><br>
        <input id=‘location’ type=‘text’ name=‘garage[location]’ placeholder=“Location”></input><br>
-       <input id=‘tire’ type=‘check_box’ name=‘garare[tire_service]’ ></input><br>
-       <input id=‘service’ type=‘check_box’ name=‘garage[service_any_car]’></input><br>
-       <input type =‘submit’/>
+       <input id=‘tire’ type="checkbox" name=‘garare[tire_service]’ ></input><br>
+        <input id=‘service’ type="checkbox" name=‘garage[service_any_car]’></input><br>
+       <input type ="submit"  />
      </form>
    `)
  };
@@ -143,9 +143,28 @@ const allGarages = []
     }
     function createGarage(userId){
 
-     $.postJSON("https://localhost:3000/garages/new")
+ let form = `<form id=“new-garage-form”>
+       <input id=‘name’ type=‘text’ name=‘garage[name]’ placeholder=“Garage Name”></input><br>
+       <input id=‘location’ type=‘text’ name=‘garage[location]’ placeholder=“Location”></input><br>
+       Tire Service<input id=‘tire’ type="checkbox" name=‘garare[tire_service]’ ></input><br>
+       Service any Make/Model <input id=‘service’ type="checkbox" name=‘garage[service_any_car]’></input><br>
+       <input type ="submit" value ="Submit" />
+     </form>`
+document.getElementById('garage-form-display').innerHTML = form
+     
 
 }
+//  Garage.prototype.garageFormHTML = function(){
+//  return (`
+//      <form id=“new-garage-form”>
+//        <input id=‘name’ type=‘text’ name=‘garage[name]’ placeholder=“Garage Name”></input><br>
+//        <input id=‘location’ type=‘text’ name=‘garage[location]’ placeholder=“Location”></input><br>
+//        <input id=‘tire’ type=‘checkbox’ name=‘garare[tire_service]’ ></input><br>
+//        <input id=‘service’ type=‘checkbox’ name=‘garage[service_any_car]’></input><br>
+//        <input type =‘submit’/>
+//      </form>
+//    `)
+// }
 
 
     Garage.prototype.garageHTML = function(){
@@ -218,7 +237,7 @@ Appointment.prototype.appointmentHTML = function(){
 
 return (`
  
- <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${this.date} </button> <div id ="appointment-details-${this.id}"></div>
+ <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${this.date.split("T")[0] +" at "+ this.date.split("T")[1].split(".")[0]} </button> <div id ="appointment-details-${this.id}"></div>
  
  
 
@@ -259,20 +278,13 @@ Appointment.prototype.theAppointmentHTML = function (){
   
 return (`
   
- <h4>Description: <span id ="textinfo"> ${this.description}</span></h4>
-  <h3 id ="dividertext"> << Customer Info >> </h3>
-  <h4> Name:  <span id ="textinfo">${this.firstName} ${this.lastName}</span></h4>
-  
-  <h4>Email: <span id ="textinfo">${this.email}</span></h4>
- <h4> Standing balance : <span id ="textinfo">$ ${this.balance}</span></h4>
-  <h3 id ="dividertext"> << Vehicle Info >> </h3>
-  <h4>Year: <span id ="textinfo">${this.vehicleYear}</span></h4>
-  <h4>Make: <span id ="textinfo">${this.vehicleMake}</span></h4>
-  <h4>Model: <span id ="textinfo">${this.vehicleModel}</span></h4>
-  <h4>License Plate: <span id ="textinfo">${this.vehicletag}</span></h4>
-  <h4>Current Mileage: <span id ="textinfo">${this.vehicleMileage}</span></h4>
-  <h4>Exterior Color: <span id ="textinfo">${this.vehicleColor}</span></h4>
+ <h5>Description: <span id ="textinfo"> ${this.description}</span></h5>
+  <h4 id ="dividertext"> << Customer Info >> </h4>
+  <h5> Name:  <span id ="textinfo">${this.firstName} ${this.lastName}</span> Email: <span id ="textinfo">${this.email}</span> Standing balance : <span id ="textinfo">$ ${this.balance}</span></h5>
 
+  <h4 id ="dividertext"> << Vehicle Info >> </h4>
+  <h5>Year: <span id ="textinfo">${this.vehicleYear}</span> Make: <span id ="textinfo">${this.vehicleMake}</span> Model: <span id ="textinfo">${this.vehicleModel}</span> License Plate: <span id ="textinfo">${this.vehicletag}</span> Current Mileage: <span id ="textinfo">${this.vehicleMileage}</span> Exterior Color: <span id ="textinfo">${this.vehicleColor}</span></h5>
+  
   `)
 }
  
