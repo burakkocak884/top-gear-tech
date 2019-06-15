@@ -1,27 +1,14 @@
 
 <div class = "garage_detail">
 
-	<% @nextID = @user.garages[@user.garages.index(@garage)].id %>
-<%  if @user.garages.index(@garage) == @user.garages.last  %>
-<% @nextID %> 
-<% else %>
-<% @nextID + 1 %> 
-<% end %> 
-
-
-<% @previousID = @user.garages[@user.garages.index(@garage)].id %>
-<%  if @user.garages.index(@garage) == @user.garages.first  %>
-<% @previousID %> 
-<% else %>
-<% @previousID - 1 %> 
-<% end %>
+	
 
 
 <h3 id = "garageName" class = "titles">Garage Name:  <span id = 'vehicle'><%= @garage.name %></span></h3>
 
 
-<button id ="previousGarage" data-id = "<%= @garage.id %>">Previous</button>
-<button id ="nextGarage" data-id = "<%= @garage.id %>">Next</button><br>
+<button id ="previousGarage" data-index = "<%= @user.garages.index(@garage) %>">Previous</button>
+<button id ="nextGarage" data-index = "<%= @user.garages.index(@garage) %>">Next</button><br>
 
 <button id ="garageAppointments" data-id = "<%= @garage.id%>">Appointments</button>
 <button id = 'garages-data' data-id = "<%= @garage.id%>">Garage details</button>
@@ -33,9 +20,9 @@
 
 
 
- <div class ="garageDetails" id = "garage-details"></div>
+ 
 
- <div class ="garageDetail" id = "appointments-list"></div>
+ 
  <div class ="garageAction">
  <button ><%= link_to "Edit this Garage's info", edit_garage_path(@garage) %></button></br>
  <button><%= link_to "Delete #{@garage.name}", garage_path(@garage), :method => :delete %></button>

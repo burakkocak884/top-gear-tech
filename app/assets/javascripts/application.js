@@ -14,6 +14,6 @@
 //= require jquery_ujs
 
 //= require activestorage
-//= require turbolinks
+
 //= require_tree .
 console.log("getting ready to start!!!");
