@@ -146,8 +146,8 @@ const allGarages = []
  let form = `<form id=“new-garage-form”>
        <input id=‘name’ type=‘text’ name=‘garage[name]’ placeholder=“Garage Name”></input><br>
        <input id=‘location’ type=‘text’ name=‘garage[location]’ placeholder=“Location”></input><br>
-       Tire Service<input id=‘tire’ type="checkbox" name=‘garare[tire_service]’ ></input><br>
-       Service any Make/Model <input id=‘service’ type="checkbox" name=‘garage[service_any_car]’></input><br>
+       <span id ="dividertext">Tire Service</span><input id=‘tire’ type="checkbox" name=‘garare[tire_service]’ ></input><br>
+       <span id ="dividertext">Service any Make/Model</span> <input id=‘service’ type="checkbox" name=‘garage[service_any_car]’></input><br>
        <input type ="submit" value ="Submit" />
      </form>`
 document.getElementById('garage-form-display').innerHTML = form
@@ -170,17 +170,17 @@ document.getElementById('garage-form-display').innerHTML = form
     Garage.prototype.garageHTML = function(){
       return (`
        <div>
-      Name of the shop: <h2>${this.name}</h2>
-       Location: <h3>${this.location}</h3>
-       Offers tire service? <h3> ${this.tire_service}</h3>
-       Can repair and make and models? <h3>${this.service_any_vehicle}</h3>
+      Name of the shop: <h2 style= "color: green">${this.name}</h2>
+       Location: <h3><span id ="dividertext">${this.location}</span></h3>
+       Offers tire service? <h3> <span id ="dividertext">${this.tire_service}</span></h3>
+       Can repair and make and models? <h3><span id ="dividertext">${this.service_any_vehicle}</span></h3>
       </div>
       `)
     }
 
         Garage.prototype.formatGarageHTML = function(){
       return  ( `
-        <h4>Name of the Shop: <span style="color: green">${this.name}</span></h4>
+        <h4>Name of the Shop: <span style="color: green">${this.name.toUpperCase()}</span></h4>
       <h3><button id = "garage-data" data-id = "${this.id}"><strong>Garage Details</strong><button id ="garageAppointments" data-id = "${this.id}"><strong>Appointments(sorted by date)</strong></button><div class ="garageDetail" id = "appointments-list-${this.id}"></div></h3>
 <h1>---------------------------------------------------</h1>
     `)
@@ -237,7 +237,7 @@ Appointment.prototype.appointmentHTML = function(){
 
 return (`
  
- <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${this.date.split("T")[0] +" at "+ this.date.split("T")[1].split(".")[0]} </button> <div id ="appointment-details-${this.id}"></div>
+ <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${new Date(this.date)} </button> <div id ="appointment-details-${this.id}"></div>
  
  
 
