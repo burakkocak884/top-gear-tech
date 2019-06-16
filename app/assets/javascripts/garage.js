@@ -237,7 +237,7 @@ Appointment.prototype.appointmentHTML = function(){
 
 return (`
  
- <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${new Date(this.date)} </button> <div id ="appointment-details-${this.id}"></div>
+ <button class ="garageDetail" id = "appointmentDetail"  data-id ="${this.id}" data-garage ="${this.garage_id}"> ${this.date.split("T")[0] + " at " + this.date.split("T")[1].split(".")[0]} </button> <div id ="appointment-details-${this.id}"></div>
  
  
 
