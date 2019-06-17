@@ -31,6 +31,7 @@
                  event.preventDefault()
  
                 let garageId = event["currentTarget"]["dataset"]["id"]
+
                  getAppointments(garageId);
             })
 
@@ -41,6 +42,7 @@
                  var appointmentId = event["currentTarget"]["dataset"]["id"]
                  let garageId = event["currentTarget"]["dataset"]["garage"]
                  let garagesUrl = event["currentTarget"]["baseURI"]
+
                  appointmentDetails(appointmentId, garageId,  garagesUrl)
             })
 
@@ -212,6 +214,8 @@ function getAppointments(theId){
         const htmlAppts = allAppointments.map(function (appt)  {
           return (appt.appointmentHTML())
     })
+    
+
     document.getElementById(`appointments-list-${theId}`).innerHTML = htmlAppts.join(" ")
     })
 }
@@ -229,11 +233,13 @@ class Appointment {
  this.customer_id = appt.customer_id
 
  allAppointments.push(this)
+
  
 }
 }
 
 Appointment.prototype.appointmentHTML = function(){
+
 
 return (`
  
@@ -266,6 +272,7 @@ return (`
 
 
  let theAppt = myAppt.theAppointmentHTML()
+
 
   document.getElementById(`appointment-details-${appointmentId}`).innerHTML = theAppt
 
