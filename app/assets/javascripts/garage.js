@@ -74,7 +74,14 @@
   function getGarages(userId){
 
         $.getJSON("/garages" , function(data)  {
-        
+         
+        data.sort(function(a, b) {
+        a = a.name;
+        b = b.name;
+        return a<b ? -1 : a>b ? 1 : 0;
+        });
+       
+       
          console.log("the data is :", data);
          allGarages.length = data.length
         data.forEach(myFunction);
