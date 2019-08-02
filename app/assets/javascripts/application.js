@@ -16,4 +16,5 @@
 //= require activestorage
 
 //= require_tree .
+//= require bootstrap/dist/js/bootstrap
 console.log("getting ready to start!!!");
