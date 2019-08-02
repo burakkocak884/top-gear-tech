@@ -59,6 +59,8 @@ Have fun managing you rental properties!!!
 
 ## Development
 
+
+
 After checking out the repo,  You can run `rails server` in terminal to experience the app on a browser.
 
 
