@@ -30,7 +30,7 @@ gem 'active_model_serializers'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'pg', '~>0.11'
-
+gem 'bootstrap-sass', '~> 3.0.2.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'omniauth-github'
