@@ -38,6 +38,7 @@ gem 'omniauth-github'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "devise", git: 'https://github.com/plataformatec/devise.git'
 gem 'bcrypt'
+gem 'sprockets'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
