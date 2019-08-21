@@ -17,4 +17,5 @@
 
 //= require_tree .
 //= require bootstrap/dist/js/bootstrap
+//= require bootstrap-sprockets
 console.log("getting ready to start!!!");
