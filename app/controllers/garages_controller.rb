@@ -3,37 +3,28 @@ class GaragesController < ApplicationController
 #ready to start at javascript project
      def index
         if user_signed_in?
-      
-         @garages = Garage.where(user_id: current_user.id)
+        @garages = Garage.where(user_id: current_user.id)
         @user = current_user
-       
-        respond_to do |format|
-          format.html { render :index}
-          format.json {render json: @garages}
-        end
-
-      
+            respond_to do |format|
+                  format.html { render :index}
+                  format.json {render json: @garages}
+            end
          else
             redirect_to user_session_path
           end
       end
 
-
-
-     
-
-
-      def show
+       def show
         if user_signed_in?
-        @garage = Garage.find(params[:id])
-        @appointment = @garage.appointments.build
-        @user = current_user
-        respond_to do |format|
-          format.html { render :show}
-          format.json {render json: @garage}
-        end
+            @garage = Garage.find(params[:id])
+            @appointment = @garage.appointments.build
+            @user = current_user
+              respond_to do |format|
+                  format.html { render :show}
+                  format.json {render json: @garage}
+              end
         else
-        redirect_to user_session_path
+            redirect_to user_session_path
         end
       end
 
@@ -47,14 +38,14 @@ class GaragesController < ApplicationController
           @garage = Garage.new(garage_params)
           @garage.user_id = @user.id
           @garages = Garage.where(user_id: current_user.id)
-              if @garage.save
-              respond_to do |f|
-          f.html { render :index}
-          f.json {render json: @garages}
-        end
-              else
-              flash[:alert] = @garage.errors.full_messages
-              end
+                if @garage.save
+                    respond_to do |f|
+                      f.html { render :index}
+                      f.json {render json: @garages}
+                  end
+                 else
+                flash[:alert] = @garage.errors.full_messages
+                end
         else 
          redirect_to user_session_path
         end
@@ -67,17 +58,14 @@ class GaragesController < ApplicationController
 
       def update
          if user_signed_in?
-          @garage = Garage.find(params[:id])
-          @garage.update(garage_params)
-
-          @user = current_user
-
-          respond_to do |format|
-          format.html { render :show}
-          format.json {render json: @garage}
-        end
-          
-         else
+              @garage = Garage.find(params[:id])
+              @garage.update(garage_params)
+              @user = current_user
+                  respond_to do |format|
+                      format.html { render :show}
+                      format.json {render json: @garage}
+                  end
+                 else
           redirect_to user_session_path
          end
       end

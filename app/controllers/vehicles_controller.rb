@@ -2,18 +2,18 @@ class VehiclesController < ApplicationController
   
       def index
            if user_signed_in?
-           @vehicles = Vehicle.where(customer_id: params[:format].to_i)
-           @customer  = Customer.find_by_id(params[:format].to_i)
-           else
-           redirect_to user_session_path
-           end
+              @vehicles = Vehicle.where(customer_id: params[:format].to_i)
+              @customer  = Customer.find_by_id(params[:format].to_i)
+              else
+              redirect_to user_session_path
+              end
       end
 
 
       def show
          if user_signed_in?
             @vehicle = Vehicle.find(params[:id])
-          else
+           else
             redirect_to user_session_path
           end
       end
@@ -27,8 +27,8 @@ class VehiclesController < ApplicationController
 
         def create
            if user_signed_in?
-            user = current_user
-            @vehicle = Vehicle.new(vehicle_params)
+                user = current_user
+                @vehicle = Vehicle.new(vehicle_params)
                 if @vehicle.save
                 owner = @vehicle.customer
                 redirect_to vehicles_path(owner)
@@ -36,7 +36,7 @@ class VehiclesController < ApplicationController
                 flash[:alert] = @vehicle.errors.full_messages
                 end
            else
-          redirect_to user_session_path
+           redirect_to user_session_path
           end
       end
 
@@ -59,15 +59,15 @@ class VehiclesController < ApplicationController
 
 
       def destroy
-          if user_signed_in?
-            vehicle = Vehicle.find(params[:id])
-           c = vehicle.customer_id
-            
-            vehicle.destroy
-            redirect_to vehicles_path(c)
-          else
-            redirect_to user_session_path
-          end
+              if user_signed_in?
+                vehicle = Vehicle.find(params[:id])
+              c = vehicle.customer_id
+                
+                vehicle.destroy
+                redirect_to vehicles_path(c)
+              else
+                redirect_to user_session_path
+              end
     end
 
 

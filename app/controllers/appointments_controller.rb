@@ -1,41 +1,33 @@
 class AppointmentsController < ApplicationController
       
       def date_picker
-        if user_signed_in?
-        
+          if user_signed_in?
           @appointments = Appointment.where(:garage_id => params[:garage_id], :date => params[:date1]..params[:date2])
-        
           render :'appointments/appointment.html'
-        else
-            redirect_to user_session_path
-         end
+          else
+              redirect_to user_session_path
+          end
       end
 
 
       def index
           if user_signed_in?
-        
-          @appointments = Appointment.where(garage_id: params[:garage_id])
-       
-          @garage = Garage.find_by_id(params[:garage_id])
-         @customers = Garage.where(garage_id: params[:garage_id])
-      respond_to do |format|
-
-          format.html { render :index}
-          format.json {render json: @appointments}
-        end
-         else
-           redirect_to user_session_path
-         end
+            @appointments = Appointment.where(garage_id: params[:garage_id])
+            @garage = Garage.find_by_id(params[:garage_id])
+            @customers = Garage.where(garage_id: params[:garage_id])
+          respond_to do |format|
+            format.html { render :index}
+            format.json {render json: @appointments}
+          end
+          else
+            redirect_to user_session_path
+          end
       end
   
 
       def show
         if user_signed_in?
-    
-         
-      
-         @appointment = Appointment.find(params[:id])
+           @appointment = Appointment.find(params[:id])
           respond_to do |format|
           format.html { render :show}
           format.json {render json: @appointment}
@@ -46,27 +38,19 @@ class AppointmentsController < ApplicationController
       end
 
       def new
-         #@garage_id = params[:garage_id]
          @appointment = Appointment.new(garage_id: params[:format].to_i)
          @appointment.build_customer
          @appointment.build_vehicle
          @appointment.customer.garage_id = params[:format].to_i
-         
-      end
+       end
 
       def create
           if user_signed_in?
             user = current_user
-         
-           
-            @appointment = Appointment.new(appointment_params)
-        
-          if @appointment.save
-           
-             garage = @appointment.garage
-          
-             # @garage = @appointment.garage_id
-              redirect_to garage_appointments_path(garage)
+           @appointment = Appointment.new(appointment_params)
+           if @appointment.save
+            garage = @appointment.garage
+            redirect_to garage_appointments_path(garage)
           else 
            flash[:alert] = @appointment.errors.full_messages
            redirect_to user_session_path
@@ -99,8 +83,7 @@ class AppointmentsController < ApplicationController
          if user_signed_in?
          appointment = Appointment.find(params[:id])
          g = appointment.garage
-         # d = appointment.date
-         appointment.destroy
+        appointment.destroy
          redirect_to garage_appointments_path(g)
          else
          redirect_to user_session_path

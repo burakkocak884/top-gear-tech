@@ -1,46 +1,43 @@
 class CustomersController < ApplicationController
      
 
-     def index
-         if user_signed_in?
-
-          @customers = Customer.where(garage_id: params[:format].to_i)
-          @garage = Garage.find_by_id(params[:format].to_i)
-        else
-           redirect_to user_session_path
-         end
-      end
+        def index
+            if user_signed_in?
+              @customers = Customer.where(garage_id: params[:format].to_i)
+              @garage = Garage.find_by_id(params[:format].to_i)
+            else
+              redirect_to user_session_path
+            end
+          end
 
       def show
          if user_signed_in?
-
-          @customer = Customer.find(params[:id])
-           respond_to do |format|
-          format.html { render :show}
-          format.json {render json: @customer.to_json(only: [:first_name, :last_name,:email,:standing_balance,:garage_id])}
-          end
+              @customer = Customer.find(params[:id])
+              respond_to do |format|
+                  format.html { render :show}
+                  format.json {render json: @customer.to_json(only: [:first_name, :last_name,:email,:standing_balance,:garage_id])}
+              end
          else
           redirect_to user_session_path
          end
       end
 
       def new
-       
-        @customer = Customer.new
+       @customer = Customer.new
         @customer.build_vehicle
       end
 
       def create 
         if user_signed_in?
-        @customer = Customer.new(customer_params)
-          if @customer.save
-          redirect_to customer_path(@customer)
-          else
-          flash[:alert] = @customer.errors.full_messages
-          new_vehicle_path(@customer)
-          end
+            @customer = Customer.new(customer_params)
+              if @customer.save
+               redirect_to customer_path(@customer)
+              else
+                flash[:alert] = @customer.errors.full_messages
+                new_vehicle_path(@customer)
+              end
         else
-       redirect_to user_session_path
+           redirect_to user_session_path
         end
       end
 
