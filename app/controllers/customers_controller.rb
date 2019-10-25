@@ -63,7 +63,7 @@ class CustomersController < ApplicationController
             redirect_to user_session_path
           end
       end
-
+ #test now
 
   private
 
