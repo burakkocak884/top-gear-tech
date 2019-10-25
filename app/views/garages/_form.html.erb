@@ -1,13 +1,16 @@
 
-<div class = "app_whole">
+<div class = "app_whole" id ="garage-form">
+
+
+
 <%= form_for(@garage) do |f| %>
 <%= f.label :name %>
-<%= f.text_field :name %></br>
+<%= f.text_field :name, placeholder: "Garage Name" %></br>
 
  
 
 <%= f.label :location %>
-<%= f.text_field :location %></br>
+<%= f.text_field :location ,placeholder: "Garage Location"%></br>
 
 
 <%= f.label :tire_service %>

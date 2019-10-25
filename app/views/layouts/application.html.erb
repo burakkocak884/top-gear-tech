@@ -59,6 +59,24 @@ top:  40%;
   overflow: hidden;
   background-color: #ffffff50;
 }
+#vehicle{
+  background-color: #ffffff90;
+  color:green;
+}
+.garageDetails {
+background-color: #ffffff90;
+padding : 20px;
+
+}
+.garageAction {
+  padding : 20px;
+}
+#textinfo {
+  color: red;
+}
+#dividertext {
+  color: #9CF910;
+}
 
 
 
@@ -68,13 +86,13 @@ top:  40%;
   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
 
-  <body style= "background-size:cover; background-image:url('/assets/stratus.jpg')">  
+  <body style= "background-size:cover; background-image:url('/assets/charger.jpg'); background-color:  ">  
     <p class="navbar-text pull-right">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <ul>
   <li><a><%= link_to "Home", root_path %></a></li>
-  <li><a><%= link_to 'Garages', garages_path(current_user) %></a></li>
+  <li><a><%= link_to 'Garages', garages_path %></a></li>
   <li><a><%= link_to 'Edit-Profile', edit_user_registration_path, :class => 'navbar-link' %></a></li> 
   <li><a><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></a></li>
   
@@ -85,11 +103,13 @@ top:  40%;
   
 <% end %>
 
+
 </p>
 
 
    
 
     <%= yield %>
+ 
   </body>
 </html>

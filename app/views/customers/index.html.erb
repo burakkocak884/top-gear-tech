@@ -3,17 +3,18 @@
 .customers {
 float: bottom;
 
+
 }
 </style>
 
 
 <h1 style = "padding: 20px">All customers registered at "<%= @garage.name %>"</h1>
-<h4 style = "padding: 20px">Sorted by "Last Name"</h4>
+<h4 style = "padding: 20px; color: yellow">Sorted by "Last Name"</h4>
 <ol>
 	
 		
 	 <% @garage.customers.order(:last_name).each do |c| %>
-	 <p class = "customers"><%= link_to "#{c.last_name} , #{c.first_name}" , customer_path(c) %></p>
+	 <p class = "customers" style = "background-color: silver"><%= link_to "#{c.last_name} , #{c.first_name}" , customer_path(c) %></p>
 	 <% end %>
 	
 	</ol>

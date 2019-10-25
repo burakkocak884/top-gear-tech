@@ -6,7 +6,7 @@ ruby '2.6.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
-
+# gem 'rails-assets-bootstrap'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -30,7 +30,7 @@ gem 'active_model_serializers'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'pg', '~>0.11'
-
+gem 'bootstrap-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'omniauth-github'
@@ -38,6 +38,7 @@ gem 'omniauth-github'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "devise", git: 'https://github.com/plataformatec/devise.git'
 gem 'bcrypt'
+gem 'sprockets'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,7 +50,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'sqlite3'
+ 
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

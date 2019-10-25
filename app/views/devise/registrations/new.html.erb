@@ -17,7 +17,7 @@ top: 50px;
 
 
 
-
+<div style = "background-size:cover; background-image:url('/assets/v8.gif')">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -49,6 +49,7 @@ top: 50px;
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+</div>
 
 
 <%= render "devise/shared/links" %>
