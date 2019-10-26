@@ -3,9 +3,13 @@
     position: relative;
 left: 45%;
 top:  40px; 
+background-color: lightgreen;
+width: 10%;
 }
 .tosignin1 {
     position: relative;
+    background-color: lightgreen;
+    width: 10%;
 left: 45%;
 top:  0px; 
 }
@@ -13,6 +17,8 @@ top:  0px;
     position: relative;
 left: 45%;
 top: 0px;
+background-color: lightgreen;
+    width: 10%;
 }
 .loginn {
     position: relative;
@@ -35,7 +41,7 @@ top: 30px;
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <p class ="tosignin1"><%= link_to "Forgot your password????", new_password_path(resource_name) %></p><br />
+  <p class ="tosignin1"><%= link_to "Forgot your password?", new_password_path(resource_name) %></p><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
