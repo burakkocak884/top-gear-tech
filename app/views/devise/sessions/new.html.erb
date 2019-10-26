@@ -22,6 +22,11 @@ top:  60px;
 left: 45%;
 top: 60px;
 }
+.guest-test{
+  background-color: white;
+  width: 30% ;
+  
+}
 
 
 
@@ -32,7 +37,7 @@ top: 60px;
 
 <h2 class ="log">Log in</h2>
 
-<p>For test purposes enter Email: guest@guest.com , Password: password </p>
+<p class='guest-test'>For test purposes enter Email: guest@guest.com , Password: password </p>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name))  do |f| %>
   <div class="field">
